@@ -1,0 +1,71 @@
+{
+  "name": "@notibuzz/noti-sdk-js",
+  "version": "1.0.0",
+  "description": "SDK ESM TypeScript/JavaScript para consumir la API de Notibuzz Cloud. Soporta envíos masivos, cola asíncrona y control de campañas.",
+  "keywords": [
+    "notibuzz",
+    "sdk",
+    "whatsapp",
+    "messaging",
+    "api",
+    "typescript",
+    "node",
+    "notibuzz-cloud",
+    "masive-messaging",
+    "bulk-messaging",
+    "async-messaging",
+    "campaign-control",
+    "session-control",
+    "chat-control",
+    "contact-control",
+    "message-control",
+    "status-control"
+  ],
+  "author": {
+    "name": "Diego Quiroz Ramirez - CEO NotiBuzz Cloud",
+    "url": "https://github.com/notibuzzcloud/noti-sdk-js"
+  },
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notibuzzcloud/noti-sdk-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/notibuzzcloud/noti-sdk-js/issues"
+  },
+  "homepage": "https://github.com/notibuzzcloud/noti-sdk-js#readme",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build",
+    "generate": "tsx scripts/generate.ts",
+    "release": "npm publish --access public"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "tsx": "^4.0.0",
+    "@types/node": "^22.8.6"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

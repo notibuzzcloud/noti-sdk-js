@@ -1,0 +1,57 @@
+# Source files
+src/
+scripts/
+data.ts
+data.js
+data.d.ts
+types.ts
+
+# Development files
+tsconfig.json
+*.config.js
+*.config.ts
+
+# Examples and docs (not needed in npm package)
+examples/
+docs/
+
+# Build artifacts
+dist/**/*.map
+
+# Development
+.git/
+.gitignore
+.editorconfig
+.eslintrc*
+.prettierrc*
+
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.local
+local.env
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+.nyc_output/
+*.test.ts
+*.spec.ts
+
+# Misc
+*.md
+!README.md
+
