@@ -89,7 +89,7 @@ async function main() {
               chatId: '51111111111@c.us',
               file: {
                 mimetype: 'audio/ogg; codecs=opus',
-                url: 'https://github.com/devlikeapro/waha/raw/core/examples/dev.likeapro.opus'
+                url: 'https://your-voice-file.opus'
               },
               convert: false
             }

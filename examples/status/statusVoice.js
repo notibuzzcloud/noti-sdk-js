@@ -23,7 +23,7 @@ async function main() {
         backgroundColor: '#38b42f',
         file: {
           mimetype: 'audio/ogg; codecs=opus',
-          url: 'https://github.com/devlikeapro/waha/raw/core/examples/dev.likeapro.opus' // Valid example URL
+          url: 'https://your-voice-file.opus' // Valid example URL
         },
         convert: true // true if you need format conversion (e.g., MP3 to OGG)
       }

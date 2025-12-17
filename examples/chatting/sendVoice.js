@@ -24,7 +24,7 @@ async function main() {
           chatId: chatId,
           file: {
             mimetype: 'audio/ogg; codecs=opus',
-            url: 'https://github.com/devlikeapro/waha/raw/core/examples/dev.likeapro.opus'
+            url: 'https://your-voice-file.opus'
           },
           convert: false
         }
