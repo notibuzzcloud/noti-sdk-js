@@ -8,9 +8,9 @@ configureClient({
 async function main() {
   try {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
-    const chatId = '51111111111@c.us' // Cambia por el chatId real
+    const chatId = '51111111111@c.us' // Change to your real chatId
     
-    console.log('💬 Enviando mensaje de texto...')
+    console.log('💬 Sending text message...')
     
     const result = await sendMessage({
       body: {
@@ -18,12 +18,12 @@ async function main() {
         payload: {
           session: sessionName,
           chatId: chatId,
-          text: '¡Hola desde @notibuzz/noti-sdk-js! 👋'
+          text: 'Hello from @notibuzz/noti-sdk-js! 👋'
         }
       }
     })
     
-    console.log('✅ Mensaje enviado:', result)
+    console.log('✅ Message sent:', result)
   } catch (error) {
     console.error('❌ Error:', error.message)
   }

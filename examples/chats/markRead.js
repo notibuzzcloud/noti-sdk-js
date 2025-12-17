@@ -10,7 +10,7 @@ async function main() {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     const chatId = '51111111111@c.us'
     
-    console.log('✅ Marcando mensajes como leídos...')
+    console.log('✅ Marking messages as read...')
     
     const result = await chatsReadMessages({
       pathParams: {
@@ -18,14 +18,14 @@ async function main() {
         chatId: chatId
       },
       query: {
-        messages: 30, // Cantidad de mensajes a marcar
-        days: 7 // Días hacia atrás
+        messages: 30, // Number of messages to mark
+        days: 7 // Days back
       }
     })
     
-    console.log(`✅ Mensajes marcados como leídos:`, result.ids?.length || 0)
+    console.log(`✅ Messages marked as read:`, result.ids?.length || 0)
     if (result.ids) {
-      console.log('IDs de mensajes:', result.ids)
+      console.log('Message IDs:', result.ids)
     }
   } catch (error) {
     console.error('❌ Error:', error.message)

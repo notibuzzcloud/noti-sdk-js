@@ -129,7 +129,7 @@ async function processStatusRequest<T = any>(
  * Validaciones:
  * - id debe ser null
  * - contacts debe ser un array con al menos un elemento (máximo 10 por request, se procesa en batches si hay más)
- * - contacts solo acepta números (ej: "51949203347") o formato @c.us (ej: "51949203347@c.us")
+ * - contacts solo acepta números (ej: "51949203346") o formato @c.us (ej: "51949203346@c.us")
  * - No se permiten @g.us ni @lid
  */
 export async function statusText<T = any>(args: { pathParams?: Record<string, string | number | boolean>, query?: Record<string, any>, body?: any } = {}): Promise<T> {
@@ -145,7 +145,7 @@ export async function statusText<T = any>(args: { pathParams?: Record<string, st
  * Validaciones:
  * - id debe ser null
  * - contacts debe ser un array con al menos un elemento (máximo 10 por request, se procesa en batches si hay más)
- * - contacts solo acepta números (ej: "51949203347") o formato @c.us (ej: "51949203347@c.us")
+ * - contacts solo acepta números (ej: "51949203346") o formato @c.us (ej: "51949203346@c.us")
  * - No se permiten @g.us ni @lid
  */
 export async function statusImage<T = any>(args: { pathParams?: Record<string, string | number | boolean>, query?: Record<string, any>, body?: any } = {}): Promise<T> {
@@ -161,7 +161,7 @@ export async function statusImage<T = any>(args: { pathParams?: Record<string, s
  * Validaciones:
  * - id debe ser null
  * - contacts debe ser un array con al menos un elemento (máximo 10 por request, se procesa en batches si hay más)
- * - contacts solo acepta números (ej: "51949203347") o formato @c.us (ej: "51949203347@c.us")
+ * - contacts solo acepta números (ej: "51949203346") o formato @c.us (ej: "51949203346@c.us")
  * - No se permiten @g.us ni @lid
  */
 export async function statusVoice<T = any>(args: { pathParams?: Record<string, string | number | boolean>, query?: Record<string, any>, body?: any } = {}): Promise<T> {
@@ -177,7 +177,7 @@ export async function statusVoice<T = any>(args: { pathParams?: Record<string, s
  * Validaciones:
  * - id debe ser null
  * - contacts debe ser un array con al menos un elemento (máximo 10 por request, se procesa en batches si hay más)
- * - contacts solo acepta números (ej: "51949203347") o formato @c.us (ej: "51949203347@c.us")
+ * - contacts solo acepta números (ej: "51949203346") o formato @c.us (ej: "51949203346@c.us")
  * - No se permiten @g.us ni @lid
  */
 export async function statusVideo<T = any>(args: { pathParams?: Record<string, string | number | boolean>, query?: Record<string, any>, body?: any } = {}): Promise<T> {
@@ -193,7 +193,7 @@ export async function statusVideo<T = any>(args: { pathParams?: Record<string, s
  * Validaciones:
  * - id debe ser un string no vacío (ID del status a eliminar)
  * - contacts debe ser un array con al menos un elemento (máximo 10 por request, se procesa en batches si hay más)
- * - contacts solo acepta números (ej: "51949203347") o formato @c.us (ej: "51949203347@c.us")
+ * - contacts solo acepta números (ej: "51949203346") o formato @c.us (ej: "51949203346@c.us")
  * - No se permiten @g.us ni @lid
  */
 export async function statusDelete<T = any>(args: { pathParams?: Record<string, string | number | boolean>, query?: Record<string, any>, body?: any } = {}): Promise<T> {

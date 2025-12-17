@@ -8,9 +8,9 @@ configureClient({
 async function main() {
   try {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
-    const phone = '51111111111@c.us' // Número sin + ni sufijo
+    const phone = '51111111111@c.us' // Number without + or suffix
     
-    console.log(`🔍 Verificando si el número ${phone} existe en WhatsApp...`)
+    console.log(`🔍 Checking if number ${phone} exists on WhatsApp...`)
     
     const result = await contactsCheckExists({
       query: {
@@ -20,10 +20,10 @@ async function main() {
     })
     
     if (result.numberExists) {
-      console.log(`✅ El número ${phone} está registrado en WhatsApp`)
+      console.log(`✅ Number ${phone} is registered on WhatsApp`)
       console.log(`   Chat ID: ${result.chatId}`)
     } else {
-      console.log(`❌ El número ${phone} NO está registrado en WhatsApp`)
+      console.log(`❌ Number ${phone} is NOT registered on WhatsApp`)
     }
   } catch (error) {
     console.error('❌ Error:', error.message)

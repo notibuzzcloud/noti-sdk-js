@@ -1,16 +1,16 @@
 # noti-sender-bridge
 
-SDK ESM para la API de Noti Sender.
+ESM SDK for the Noti Sender API.
 
-- Cliente configurable (`baseUrl`, `apiKey`).
-- Wrappers tipados por categoría (sessions, chatting, ...).
-- Documentación autogenerada de endpoints.
+- Configurable client (`baseUrl`, `apiKey`).
+- Typed wrappers by category (sessions, chatting, ...).
+- Auto-generated endpoint documentation.
 
-## Características
-- ESM-first, tipado con TypeScript.
-- `fetch` nativo, sin dependencias pesadas.
-- Generador que recorre `data.ts` para crear funciones y docs.
+## Features
+- ESM-first, typed with TypeScript.
+- Native `fetch`, no heavy dependencies.
+- Generator that traverses `data.ts` to create functions and docs.
 
-## Enlaces
-- Inicio rápido: `quickstart.md`
+## Links
+- Quick start: `quickstart.md`
 - Endpoints: `endpoints.md`

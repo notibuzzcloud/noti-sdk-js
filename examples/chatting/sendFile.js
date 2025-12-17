@@ -10,9 +10,9 @@ async function main() {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     const chatId = '51111111111@c.us'
     
-    console.log('📄 Enviando archivo...')
+    console.log('📄 Sending file...')
     
-    // Opción 1: Desde URL
+    // Option 1: From URL
     const result = await sendMessage({
       body: {
         type: 'file',
@@ -29,9 +29,9 @@ async function main() {
       }
     })
     
-    console.log('✅ Archivo enviado (URL):', result)
+    console.log('✅ File sent (URL):', result)
     
-    // Opción 2: Desde base64
+    // Option 2: From base64
     const result2 = await sendMessage({
       body: {
         type: 'file',
@@ -48,7 +48,7 @@ async function main() {
       }
     })
     
-    console.log('✅ Archivo enviado (base64):', result2)
+    console.log('✅ File sent (base64):', result2)
   } catch (error) {
     console.error('❌ Error:', error.message)
   }

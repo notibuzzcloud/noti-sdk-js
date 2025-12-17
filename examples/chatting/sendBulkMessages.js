@@ -9,18 +9,18 @@ async function main() {
   try {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     
-    console.log('📨 Enviando mensajes masivos...')
+    console.log('📨 Sending bulk messages...')
     
     const result = await sendMessage({
       body: {
-        intervalMs: 20000, // 20 segundos entre mensajes
+        intervalMs: 20000, // 20 seconds between messages
         messages: [
           {
             type: 'text',
             payload: {
               session: sessionName,
               chatId: '51111111111@c.us',
-              text: 'Mensaje 1: Hola! 👋'
+              text: 'Message 1: Hello! 👋'
             }
           },
           {
@@ -28,7 +28,7 @@ async function main() {
             payload: {
               session: sessionName,
               chatId: '51111111111@c.us',
-              text: 'Mensaje 2: ¿Cómo estás?'
+              text: 'Message 2: How are you?'
             }
           },
           {
@@ -40,7 +40,7 @@ async function main() {
                 mimetype: 'image/jpeg',
                 url: 'https://picsum.photos/400/300'
               },
-              caption: 'Mensaje 3: Imagen masiva (URL)'
+              caption: 'Message 3: Bulk image (URL)'
             }
           },
           {
@@ -50,10 +50,10 @@ async function main() {
               chatId: '51111111111@c.us',
               file: {
                 mimetype: 'image/jpeg',
-                filename: 'foto.jpg',
+                filename: 'photo.jpg',
                 data: '/9j/4AAQSkZJRgABAgAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k='
               },
-              caption: 'Mensaje 4: Imagen masiva (base64)'
+              caption: 'Message 4: Bulk image (base64)'
             }
           },
           {
@@ -63,10 +63,10 @@ async function main() {
               chatId: '51111111111@c.us',
               file: {
                 mimetype: 'application/pdf',
-                filename: 'documento.pdf',
+                filename: 'document.pdf',
                 url: 'https://scrumguides.org/docs/scrumguide/v1/Scrum-Guide-ES.pdf'
               },
-              caption: 'Mensaje 5: Archivo (URL)'
+              caption: 'Message 5: File (URL)'
             }
           },
           {
@@ -76,10 +76,10 @@ async function main() {
               chatId: '51111111111@c.us',
               file: {
                 mimetype: 'application/pdf',
-                filename: 'documento.pdf',
+                filename: 'document.pdf',
                 data: '/9j/4AAQSkZJRgABAQAAAQABAAD.......'
               },
-              caption: 'Mensaje 6: Archivo (base64)'
+              caption: 'Message 6: File (base64)'
             }
           },
           {
@@ -117,7 +117,7 @@ async function main() {
                 filename: 'video.mp4',
                 url: 'https://example.com/video.mp4'
               },
-              caption: 'Mensaje 9: Video (URL)',
+              caption: 'Message 9: Video (URL)',
               asNote: false,
               convert: false
             }
@@ -132,7 +132,7 @@ async function main() {
                 filename: 'video.mp4',
                 data: 'AAAAGGZ0eXBtcDQyAAAAAGlzb21tc....'
               },
-              caption: 'Mensaje 10: Video (base64)',
+              caption: 'Message 10: Video (base64)',
               asNote: false,
               convert: false
             }
@@ -146,10 +146,10 @@ async function main() {
       }
     })
     
-    console.log('✅ Campaña masiva encolada:')
+    console.log('✅ Bulk campaign enqueued:')
     console.log(`  Job ID: ${result.jobId}`)
-    console.log(`  Mensajes: ${result.count}`)
-    console.log(`  Intervalo: ${result.intervalMs}ms`)
+    console.log(`  Messages: ${result.count}`)
+    console.log(`  Interval: ${result.intervalMs}ms`)
   } catch (error) {
     console.error('❌ Error:', error.message)
   }

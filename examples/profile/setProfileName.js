@@ -8,16 +8,16 @@ configureClient({
 async function main() {
   try {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
-    const newName = 'Mi Nuevo Nombre'
+    const newName = 'My New Name'
     
-    console.log(`✏️ Actualizando nombre del perfil a "${newName}"...`)
+    console.log(`✏️ Updating profile name to "${newName}"...`)
     
     const result = await setProfileName({ 
       pathParams: { session: sessionName },
       body: { name: newName }
     })
     
-    console.log('✅ Nombre actualizado:', result)
+    console.log('✅ Name updated:', result)
   } catch (error) {
     console.error('❌ Error:', error.message)
   }

@@ -10,7 +10,7 @@ async function main() {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     const chatId = '51111111111@c.us'
     
-    console.log('📍 Enviando ubicación...')
+    console.log('📍 Sending location...')
     
     const result = await sendMessage({
       body: {
@@ -26,7 +26,7 @@ async function main() {
       }
     })
     
-    console.log('✅ Ubicación enviada:', result)
+    console.log('✅ Location sent:', result)
   } catch (error) {
     console.error('❌ Error:', error.message)
   }

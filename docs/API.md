@@ -1,34 +1,34 @@
 # API Reference
 
-## Configuración
+## Configuration
 
 ### `configureClient(config: ClientConfig)`
 ### `configureClient(notiUrl: string, notiApiKey: string)`
 
-Configura el cliente global con la URL base del Bridge y la API Key.
+Configures the global client with the Bridge base URL and API Key.
 
-**Sintaxis recomendada (objeto):**
+**Recommended syntax (object):**
 ```typescript
 import { configureClient } from '@notibuzz/noti-sdk-js'
 
 configureClient({
-  notiUrl: ''your_base_url'',
+  notiUrl: 'your_base_url',
   notiApiKey: 'your_api_key'
 })
 ```
 
-**Sintaxis tradicional (también soportada):**
+**Traditional syntax (also supported):**
 ```typescript
-configureClient(''your_base_url'', 'your_api_key')
+configureClient('your_base_url', 'your_api_key')
 ```
 
-**Parámetros (sintaxis de objeto):**
-- `config.notiUrl: string` - URL base del Bridge
-- `config.notiApiKey: string` - API Key para autenticación
+**Parameters (object syntax):**
+- `config.notiUrl: string` - Bridge base URL
+- `config.notiApiKey: string` - API Key for authentication
 
 ### `getClient(): NotiSenderClient`
 
-Obtiene el cliente configurado. Lanza un error si no está configurado.
+Gets the configured client. Throws an error if not configured.
 
 ```typescript
 import { getClient } from '@notibuzz/noti-sdk-js'
@@ -40,36 +40,36 @@ const client = getClient()
 
 ### `listSessions(options?)`
 
-Lista todas las sesiones disponibles.
+Lists all available sessions.
 
-**Parámetros:**
-- `options.query.all?: boolean` - Incluir sesiones en estado STOPPED
+**Parameters:**
+- `options.query.all?: boolean` - Include sessions in STOPPED state
 
-**Ejemplo:**
+**Example:**
 ```typescript
 const sessions = await listSessions({ query: { all: true } })
 ```
 
 ### `getSession(options)`
 
-Obtiene información detallada de una sesión.
+Gets detailed information about a session.
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
+**Parameters:**
+- `options.pathParams.session: string` - Session name
 
-**Ejemplo:**
+**Example:**
 ```typescript
 const session = await getSession({ pathParams: { session: 'default' } })
 ```
 
 ### `getSessionMe(options)`
 
-Obtiene información de la cuenta autenticada de la sesión.
+Gets information about the authenticated account.
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
+**Parameters:**
+- `options.pathParams.session: string` - Session name
 
-**Ejemplo:**
+**Example:**
 ```typescript
 const me = await getSessionMe({ pathParams: { session: 'default' } })
 ```
@@ -78,414 +78,346 @@ const me = await getSessionMe({ pathParams: { session: 'default' } })
 
 ### `getMyProfile(options)`
 
-Obtiene la información del perfil de la cuenta.
+Gets the account profile information.
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
+**Parameters:**
+- `options.pathParams.session: string` - Session name
 
 ### `setProfileName(options)`
 
-Actualiza el nombre del perfil.
+Updates the profile name.
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
-- `options.body.name: string` - Nuevo nombre
+**Parameters:**
+- `options.pathParams.session: string` - Session name
+- `options.body.name: string` - New name
 
 ### `setProfileStatus(options)`
 
-Actualiza el estado (About) del perfil.
+Updates the profile status (About).
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
-- `options.body.status: string` - Nuevo estado
+**Parameters:**
+- `options.pathParams.session: string` - Session name
+- `options.body.status: string` - New status text
 
 ### `setProfilePicture(options)`
 
-Actualiza la foto de perfil.
+Updates the profile picture.
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
-- `options.body.file: { mimetype: string, filename?: string, url?: string, data?: string }` - Archivo (URL o base64)
+**Parameters:**
+- `options.pathParams.session: string` - Session name
+- `options.body.file: { mimetype: string, filename?: string, url?: string, data?: string }` - Image file
 
 ### `deleteProfilePicture(options)`
 
-Elimina la foto de perfil.
+Deletes the profile picture.
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
+**Parameters:**
+- `options.pathParams.session: string` - Session name
 
 ## Chatting
 
-**Importante**: Todos los mensajes se envían a través del endpoint genérico `sendMessage`. No existen funciones individuales como `sendText`, `sendImage`, etc.
-
 ### `sendMessage(options)`
 
-Endpoint único y genérico para enviar mensajes. Soporta mensajes en lote e individuales.
+Sends messages in batch or individually using the generic `/api/sendMessage` endpoint.
 
-**Tipos soportados** (según TYPE_PATH_MAP del bridge):
-- `'text'` - Mensaje de texto
-- `'image'` - Imagen
-- `'file'` - Archivo
-- `'voice'` - Nota de voz
-- `'video'` - Video
-- `'link-custom-preview'` - Texto con vista previa personalizada
-- `'seen'` - Marcar como visto
-- `'poll'` - Encuesta
-- `'location'` - Ubicación
-- `'contact-vcard'` - Contacto (vCard)
-- `'forward'` - Reenviar mensaje
+**Supported types:** `text`, `image`, `file`, `voice`, `video`, `link-custom-preview`, `seen`, `poll`, `location`, `contact-vcard`, `forward`, `list`
 
-**Nota**: `startTyping` y `stopTyping` tienen endpoints directos y NO pasan por sendMessage.
+**Parameters:**
+- `options.body.type?: MessageType` - Message type (for individual mode)
+- `options.body.payload?: any` - Message payload (for individual mode)
+- `options.body.messages?: Array<{ type: MessageType, payload: any }>` - Array of messages (for bulk mode)
+- `options.body.intervalMs?: number` - Interval between messages in milliseconds (for bulk mode)
+- `options.body.meta?: { campaignId?: string, requester?: string, origin?: string }` - Campaign metadata
+- `options.async?: boolean` - Whether to enqueue the message
 
-**Parámetros:**
+**Example (individual):**
+```typescript
+await sendMessage({
+  body: {
+    type: 'text',
+    payload: {
+      session: 'default',
+      chatId: '51987654321@c.us',
+      text: 'Hello!'
+    }
+  }
+})
+```
 
-**Modo masivo:**
-- `options.body.messages: Array<{ type: MessageType, payload: any }>` - Array de mensajes
-- `options.body.intervalMs?: number` - Intervalo entre mensajes (ms)
-- `options.body.meta?: { campaignId?: string, requester?: string, origin?: string }` - Metadata de campaña
-
-**Modo individual:**
-- `options.body.type: MessageType` - Tipo de mensaje
-- `options.body.payload: any` - Payload del mensaje
-
-**Opcional:**
-- `options.async?: boolean` - Enviar de forma asíncrona (encolar)
-
-**Ejemplo masivo:**
+**Example (bulk):**
 ```typescript
 await sendMessage({
   body: {
     intervalMs: 20000,
     messages: [
-      { 
-        type: 'text', 
-        payload: { 
-          session: 'default', 
-          chatId: '51987654321@c.us', 
-          text: 'Hola' 
-        } 
-      },
       {
-        type: 'image',
+        type: 'text',
         payload: {
           session: 'default',
-          chatId: '51987654322@c.us',
-          file: {
-            mimetype: 'image/jpeg',
-            url: 'https://example.com/image.jpg'
-          }
+          chatId: '51987654321@c.us',
+          text: 'Message 1'
         }
       }
-    ],
-    meta: {
-      campaignId: 'campaign-123',
-      requester: 'my-app'
-    }
-  }
-})
-```
-
-**Ejemplo individual - Texto:**
-```typescript
-await sendMessage({
-  body: {
-    type: 'text',
-    payload: { 
-      session: 'default', 
-      chatId: '51987654321@c.us', 
-      text: 'Hola' 
-    }
-  }
-})
-```
-
-**Ejemplo individual - Imagen:**
-```typescript
-await sendMessage({
-  body: {
-    type: 'image',
-    payload: {
-      session: 'default',
-      chatId: '51987654321@c.us',
-      file: {
-        mimetype: 'image/jpeg',
-        filename: 'foto.jpg',
-        url: 'https://example.com/image.jpg'
-      },
-      caption: 'Mira esto'
-    }
-  }
-})
-```
-
-**Ejemplo individual - Marcar como visto:**
-```typescript
-await sendMessage({
-  body: {
-    type: 'seen',
-    payload: {
-      session: 'default',
-      chatId: '51987654321@c.us',
-      messages: ['false_51987654321@c.us_AAAAAAAAAAAAAAAAAAAA']
-    }
+    ]
   }
 })
 ```
 
 ### `reaction(options)`
 
-Agrega o elimina una reacción en un mensaje. Este endpoint NO pasa por sendMessage, es directo.
+Adds or removes a reaction on a message.
 
-**Parámetros:**
-- `options.body.session: string` - Nombre de la sesión
-- `options.body.messageId: string` - ID del mensaje
-- `options.body.reaction: string` - Emoji de la reacción (ej: '👍')
+**Parameters:**
+- `options.body.session: string` - Session name
+- `options.body.messageId: string` - Message ID
+- `options.body.reaction: string` - Reaction emoji (empty string to remove)
 
 ### `startTyping(options)`
 
-Inicia el estado de escritura en un chat. Este endpoint NO pasa por sendMessage, es directo.
+Starts typing status in a chat.
 
-**Parámetros:**
-- `options.body.session: string` - Nombre de la sesión
-- `options.body.chatId: string` - ID del chat
-- `options.async?: boolean` - Enviar de forma asíncrona
+**Parameters:**
+- `options.body.session: string` - Session name
+- `options.body.chatId: string` - Chat ID
 
 ### `stopTyping(options)`
 
-Detiene el estado de escritura en un chat. Este endpoint NO pasa por sendMessage, es directo.
+Stops typing status in a chat.
 
-**Parámetros:**
-- `options.body.session: string` - Nombre de la sesión
-- `options.body.chatId: string` - ID del chat
-- `options.async?: boolean` - Enviar de forma asíncrona
+**Parameters:**
+- `options.body.session: string` - Session name
+- `options.body.chatId: string` - Chat ID
 
-## Status (Stories)
+## Status
 
 ### `statusText(options)`
 
-Crea un Story de tipo texto.
+Publishes a text status.
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
-- `options.body.contacts?: string[]` - Lista de contactos ([] para todos)
-- `options.body.text: string` - Texto del Story
-- `options.body.backgroundColor?: string` - Color de fondo (hex)
-- `options.body.font?: number` - Fuente
-- `options.body.linkPreview?: boolean` - Incluir vista previa de enlaces
+**Parameters:**
+- `options.pathParams.session: string` - Session name
+- `options.body.contacts: string[]` - Array of contact IDs (empty array for everyone)
+- `options.body.text: string` - Status text
+- `options.body.backgroundColor?: string` - Background color
+- `options.body.font?: number` - Font type
+- `options.body.linkPreview?: boolean` - Enable link preview
 
 ### `statusImage(options)`
 
-Crea un Story de tipo imagen.
+Publishes an image status.
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
-- `options.body.contacts?: string[]` - Lista de contactos ([] para todos)
-- `options.body.file: { mimetype: string, filename?: string, url?: string, data?: string }` - Archivo
-- `options.body.caption?: string` - Descripción
+**Parameters:**
+- `options.pathParams.session: string` - Session name
+- `options.body.contacts: string[]` - Array of contact IDs
+- `options.body.file: { mimetype: string, filename?: string, url?: string, data?: string }` - Image file
+- `options.body.caption?: string` - Image caption
 
 ### `statusVoice(options)`
 
-Crea un Story de tipo voz.
+Publishes a voice status.
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
-- `options.body.contacts?: string[]` - Lista de contactos ([] para todos)
-- `options.body.file: { mimetype: string, url?: string, data?: string }` - Archivo (OGG/OPUS)
-- `options.body.backgroundColor?: string` - Color de fondo
-- `options.body.convert?: boolean` - Convertir formato
+**Parameters:**
+- `options.pathParams.session: string` - Session name
+- `options.body.contacts: string[]` - Array of contact IDs
+- `options.body.file: { mimetype: string, url?: string, data?: string }` - Audio file (OGG/OPUS)
+- `options.body.convert?: boolean` - Convert format if needed
 
 ### `statusVideo(options)`
 
-Crea un Story de tipo video.
+Publishes a video status.
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
-- `options.body.contacts?: string[]` - Lista de contactos ([] para todos)
-- `options.body.file: { mimetype: string, filename: string, url?: string, data?: string }` - Archivo (MP4/H.264)
-- `options.body.caption?: string` - Descripción
-- `options.body.convert?: boolean` - Convertir formato
+**Parameters:**
+- `options.pathParams.session: string` - Session name
+- `options.body.contacts: string[]` - Array of contact IDs
+- `options.body.file: { mimetype: string, filename?: string, url?: string, data?: string }` - Video file (MP4/H.264)
+- `options.body.caption?: string` - Video caption
+- `options.body.convert?: boolean` - Convert format if needed
 
 ### `statusDelete(options)`
 
-Elimina un Story.
+Deletes a previously sent status.
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
-- `options.body.id: string` - ID del Story a eliminar
-- `options.body.contacts?: string[]` - Lista de contactos ([] para todos)
+**Parameters:**
+- `options.pathParams.session: string` - Session name
+- `options.body.id: string` - Status ID
+- `options.body.contacts?: string[]` - Optional list of contacts to limit deletion
 
 ## Chats
 
 ### `chatsGet(options)`
 
-Lista los chats de la sesión.
+Lists chats of the session.
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
-- `options.query?: Record<string, any>` - Parámetros de consulta
+**Parameters:**
+- `options.pathParams.session: string` - Session name
+- `options.query?: Record<string, any>` - Query parameters
 
 ### `chatsOverviewGet(options)`
 
-Obtiene el resumen de chats.
+Gets chat overview (id, name, photo, last message).
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
-- `options.query.limit?: number` - Cantidad de resultados
-- `options.query.offset?: number` - Desplazamiento
-- `options.query.ids?: string[]` - Filtrar por IDs
+**Parameters:**
+- `options.pathParams.session: string` - Session name
+- `options.query.limit?: number` - Number of results (default 20)
+- `options.query.offset?: number` - Offset for pagination
+- `options.query.ids?: string[]` - Filter by chat IDs
 
 ### `chatsOverviewPost(options)`
 
-Obtiene el resumen de chats usando POST (permite filtros más complejos).
+Gets chat overview using POST (allows more complex filters).
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
-- `options.body?: any` - Cuerpo de la petición
+**Parameters:**
+- `options.pathParams.session: string` - Session name
+- `options.body.limit?: number` - Number of results
+- `options.body.offset?: number` - Offset for pagination
+- `options.body.ids?: string[]` - Filter by chat IDs
 
 ### `chatsGetMessages(options)`
 
-Lista los mensajes del chat.
+Lists chat messages with filters and pagination.
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
-- `options.pathParams.chatId: string` - ID del chat
-- `options.query.limit?: number` - Cantidad de resultados
-- `options.query.offset?: number` - Desplazamiento
-- `options.query.downloadMedia?: boolean` - Descargar media
+**Parameters:**
+- `options.pathParams.session: string` - Session name
+- `options.pathParams.chatId: string` - Chat ID
+- `options.query.limit?: number` - Number of results (default 10)
+- `options.query.offset?: number` - Offset for pagination
+- `options.query.downloadMedia?: boolean` - Download media associated with messages
 
 ### `chatsReadMessages(options)`
 
-Marca mensajes como leídos.
+Marks messages as read (latest first).
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
-- `options.pathParams.chatId: string` - ID del chat
-- `options.query.messages?: number` - Cantidad de mensajes
-- `options.query.days?: number` - Días hacia atrás
+**Parameters:**
+- `options.pathParams.session: string` - Session name
+- `options.pathParams.chatId: string` - Chat ID
+- `options.query.messages?: number` - Number of messages to mark as read
+- `options.query.days?: number` - Number of days back (default 7)
+
+### `chatsGetMessage(options)`
+
+Gets a specific message by its ID.
+
+**Parameters:**
+- `options.pathParams.session: string` - Session name
+- `options.pathParams.chatId: string` - Chat ID
+- `options.pathParams.messageId: string` - Message ID
+- `options.query.downloadMedia?: boolean` - Download associated media
+
+### `chatsDeleteMessage(options)`
+
+Deletes a specific message from the chat by its ID.
+
+**Parameters:**
+- `options.pathParams.session: string` - Session name
+- `options.pathParams.chatId: string` - Chat ID
+- `options.pathParams.messageId: string` - Message ID
 
 ### `chatsEditMessage(options)`
 
-Edita un mensaje.
+Edits the content of an existing message.
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
-- `options.pathParams.chatId: string` - ID del chat
-- `options.pathParams.messageId: string` - ID del mensaje
-- `options.body.text: string` - Nuevo texto
-- `options.body.linkPreview?: boolean` - Incluir vista previa
+**Parameters:**
+- `options.pathParams.session: string` - Session name
+- `options.pathParams.chatId: string` - Chat ID
+- `options.pathParams.messageId: string` - Message ID
+- `options.body.text: string` - New message text
+- `options.body.linkPreview?: boolean` - Include link preview
 
 ### `chatsPinMessage(options)`
 
-Pinea un mensaje.
+Pins a message within the chat for a specific duration.
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
-- `options.pathParams.chatId: string` - ID del chat
-- `options.pathParams.messageId: string` - ID del mensaje
-- `options.body.duration: number` - Duración en segundos (86400 = 24h, 604800 = 7d, 2592000 = 30d)
+**Parameters:**
+- `options.pathParams.session: string` - Session name
+- `options.pathParams.chatId: string` - Chat ID
+- `options.pathParams.messageId: string` - Message ID
+- `options.body.duration: number` - Duration in seconds (e.g., 86400 for 24 hours)
 
 ### `chatsUnpinMessage(options)`
 
-Despinea un mensaje.
+Removes the pin from a message within the chat.
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
-- `options.pathParams.chatId: string` - ID del chat
-- `options.pathParams.messageId: string` - ID del mensaje
+**Parameters:**
+- `options.pathParams.session: string` - Session name
+- `options.pathParams.chatId: string` - Chat ID
+- `options.pathParams.messageId: string` - Message ID
 
 ## Contacts
 
 ### `contactsGetAll(options)`
 
-Lista todos los contactos.
+Lists all contacts.
 
-**Parámetros:**
-- `options.query.session: string` - Nombre de la sesión
+**Parameters:**
+- `options.query.session: string` - Session name
 
 ### `contactsGetBasic(options)`
 
-Obtiene información básica de un contacto.
+Returns basic contact data.
 
-**Parámetros:**
-- `options.query.session: string` - Nombre de la sesión
-- `options.query.contactId: string` - ID del contacto
+**Parameters:**
+- `options.query.session: string` - Session name
+- `options.query.contactId: string` - Contact ID (JID)
 
 ### `contactsCheckExists(options)`
 
-Verifica si un número existe en WhatsApp.
+Checks if a number exists on WhatsApp.
 
-**Parámetros:**
-- `options.query.session: string` - Nombre de la sesión
-- `options.query.phone: string` - Número telefónico (sin + ni sufijo)
+**Parameters:**
+- `options.query.session: string` - Session name
+- `options.query.phone: string` - Phone number (without + or suffix)
 
 ### `contactsProfilePicture(options)`
 
-Obtiene la URL de la foto de perfil.
+Returns the profile picture URL.
 
-**Parámetros:**
-- `options.query.session: string` - Nombre de la sesión
-- `options.query.contactId: string` - ID del contacto
-- `options.query.refresh?: boolean` - Forzar actualización
-
-### `contactsBlock(options)`
-
-Bloquea un contacto.
-
-**Parámetros:**
-- `options.body.session: string` - Nombre de la sesión
-- `options.body.contactId: string` - ID del contacto
-
-### `contactsUnblock(options)`
-
-Desbloquea un contacto.
-
-**Parámetros:**
-- `options.body.session: string` - Nombre de la sesión
-- `options.body.contactId: string` - ID del contacto
+**Parameters:**
+- `options.query.session: string` - Session name
+- `options.query.contactId: string` - Contact ID
+- `options.query.refresh?: boolean` - Force refresh from server
 
 ### `contactsUpsert(options)`
 
-Crea o actualiza un contacto.
+Creates or updates a contact.
 
-**Parámetros:**
-- `options.pathParams.session: string` - Nombre de la sesión
-- `options.pathParams.chatId: string` - ID del contacto
-- `options.body.firstName?: string` - Nombre
-- `options.body.lastName?: string` - Apellido
+**Parameters:**
+- `options.pathParams.session: string` - Session name
+- `options.pathParams.chatId: string` - Chat ID
+- `options.body.firstName?: string` - First name
+- `options.body.lastName?: string` - Last name
 
 ## Bulk
 
-### `bulkAvailability(options)`
-
-Verifica la disponibilidad de capacidad para envíos masivos.
-
-**Parámetros:**
-- `options.query.requester?: string` - Identificador del solicitante
-
-**Retorna:**
-```typescript
-{
-  available: boolean
-  current: number
-  max: number
-  origin: string
-  requester?: string
-}
-```
-
 ### `bulkStopCampaign(options)`
 
-Detiene una campaña de envío masivo.
+Stops a bulk campaign currently being processed.
 
-**Parámetros:**
-- `options.pathParams.id: string` - ID de la campaña
-- `options.body.sessions?: string[]` - Sesiones específicas (opcional)
+**Parameters:**
+- `options.pathParams.id: string` - Campaign ID
+- `options.body.sessions?: string[]` - Optional list of sessions to stop
 
 ### `bulkResumeCampaign(options)`
 
-Reanuda una campaña de envío masivo.
+Resumes a bulk campaign by clearing the cancel flag.
 
-**Parámetros:**
-- `options.pathParams.id: string` - ID de la campaña
-- `options.body.sessions?: string[]` - Sesiones específicas (opcional)
+**Parameters:**
+- `options.pathParams.id: string` - Campaign ID
+- `options.body.sessions?: string[]` - Optional list of sessions to resume
 
+### `bulkAvailability(options)`
+
+Checks bulk campaign availability without modifying locks.
+
+**Parameters:**
+- `options.query.requester?: string` - Requester identifier
+
+**Returns:**
+```typescript
+{
+  available: boolean,
+  current: number,
+  max: number,
+  origin: string,
+  requester?: string
+}
+```

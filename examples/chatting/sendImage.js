@@ -10,9 +10,9 @@ async function main() {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     const chatId = '51111111111@c.us'
     
-    console.log('🖼️ Enviando imagen...')
+    console.log('🖼️ Sending image...')
     
-    // Opción 1: Desde URL
+    // Option 1: From URL
     const result = await sendMessage({
       body: {
         type: 'image',
@@ -21,17 +21,17 @@ async function main() {
           chatId: chatId,
           file: {
             mimetype: 'image/jpeg',
-            filename: 'foto.jpg',
+            filename: 'photo.jpg',
             url: 'https://picsum.photos/400/300',
           },
-          caption: 'Mira esta imagen desde el SDK! 📸'
+          caption: 'Check out this image from the SDK! 📸'
         }
       }
     })
     
-    console.log('✅ Imagen enviada (URL):', result)
+    console.log('✅ Image sent (URL):', result)
     
-    // Opción 2: Desde base64
+    // Option 2: From base64
     const result2 = await sendMessage({
       body: {
         type: 'image',
@@ -40,15 +40,15 @@ async function main() {
           chatId: chatId,
           file: {
             mimetype: 'image/jpeg',
-            filename: 'foto.jpg',
+            filename: 'photo.jpg',
             data: '/9j/4AAQSkZJRgABAgAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k='
           },
-          caption: 'Imagen desde base64'
+          caption: 'Image from base64'
         }
       }
     })
     
-    console.log('✅ Imagen enviada (base64):', result2)
+    console.log('✅ Image sent (base64):', result2)
   } catch (error) {
     console.error('❌ Error:', error.message)
   }

@@ -1,6 +1,6 @@
 import { configureClient, listSessions } from '@notibuzz/noti-sdk-js'
 
-// Configurar cliente
+// Configure client
 configureClient({
   notiUrl: process.env.NOTI_URL,
   notiApiKey: process.env.NOTI_KEY || 'your_api_key'
@@ -8,18 +8,18 @@ configureClient({
 
 async function main() {
   try {
-    console.log('📋 Listando todas las sesiones...')
+    console.log('📋 Listing all sessions...')
     
-    // Listar todas las sesiones (incluyendo STOPPED)
+    // List all sessions (including STOPPED)
     const sessions = await listSessions({ 
       query: { all: true } 
     })
     
-    console.log(`✅ Encontradas ${sessions.length} sesiones:`)
+    console.log(`✅ Found ${sessions.length} sessions:`)
     sessions.forEach((session) => {
       console.log(`  - ${session.name}: ${session.status}`)
       if (session.me) {
-        console.log(`    Usuario: ${session.me.pushName || session.me.id}`)
+        console.log(`    User: ${session.me.pushName || session.me.id}`)
       }
     })
   } catch (error) {

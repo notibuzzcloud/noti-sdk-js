@@ -9,7 +9,7 @@ async function main() {
   try {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     
-    console.log('💬 Listando chats...')
+    console.log('💬 Listing chats...')
     
     const chats = await chatsOverviewGet({
       pathParams: { session: sessionName },
@@ -21,11 +21,11 @@ async function main() {
 
     console.log('Chats:', JSON.stringify(chats, null, 2))
     
-    console.log(`✅ Encontrados ${chats.length} chats:`)
+    console.log(`✅ Found ${chats.length} chats:`)
     chats.forEach((chat) => {
       console.log(`  - ${chat.name || chat.id}`)
       if (chat.lastMessage) {
-        console.log(`    Último mensaje: ${chat.lastMessage.body || '(sin texto)'}`)
+        console.log(`    Last message: ${chat.lastMessage.body || '(no text)'}`)
       }
     })
   } catch (error) {

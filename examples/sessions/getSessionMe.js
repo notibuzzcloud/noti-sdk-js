@@ -9,15 +9,15 @@ async function main() {
   try {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     
-    console.log(`👤 Obteniendo información de la cuenta autenticada...`)
+    console.log(`👤 Getting authenticated account information...`)
     
     const me = await getSessionMe({ 
       pathParams: { session: sessionName } 
     })
     
-    console.log('✅ Información de la cuenta:')
+    console.log('✅ Account information:')
     console.log(`  ID: ${me.id}`)
-    console.log(`  Nombre: ${me.pushName || 'Sin nombre'}`)
+    console.log(`  Name: ${me.pushName || 'No name'}`)
     if (me.lid) {
       console.log(`  LID: ${me.lid}`)
     }

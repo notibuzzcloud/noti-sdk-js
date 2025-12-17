@@ -10,7 +10,7 @@ async function main() {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     const chatId = '51111111111@c.us'
     
-    console.log(`📨 Obteniendo mensajes del chat ${chatId}...`)
+    console.log(`📨 Getting messages from chat ${chatId}...`)
     
     const messages = await chatsGetMessages({
       pathParams: {
@@ -24,10 +24,10 @@ async function main() {
       }
     })
     
-    console.log(`✅ Encontrados ${messages.length} mensajes:`)
+    console.log(`✅ Found ${messages.length} messages:`)
     messages.forEach((msg) => {
       //console.log(`  ID: ${msg.id}`)
-      console.log(`  [${msg.fromMe ? 'Yo' : msg.from}]: ${msg.body || '(media)'}`)
+      console.log(`  [${msg.fromMe ? 'Me' : msg.from}]: ${msg.body || '(media)'}`)
     })
   } catch (error) {
     console.error('❌ Error:', error.message)

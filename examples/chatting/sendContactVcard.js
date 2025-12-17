@@ -8,9 +8,9 @@ configureClient({
 async function main() {
   try {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
-    const chatId = '51111111111@c.us' // Chat donde se enviará el contacto
+    const chatId = '51111111111@c.us' // Chat where the contact will be sent
     
-    console.log('👤 Enviando contacto (vCard)...')
+    console.log('👤 Sending contact (vCard)...')
     
     const result = await sendMessage({
       body: {
@@ -23,7 +23,7 @@ async function main() {
               fullName: 'Diego Quiroz',
               organization: 'HilOs Digital Factory',
               phoneNumber: '+51 949 203 347',
-              whatsappId: '51949203347'
+              whatsappId: '51949203346'
             }
           ],
           reply_to: null
@@ -31,7 +31,7 @@ async function main() {
       }
     })
     
-    console.log('✅ Contacto enviado:', result)
+    console.log('✅ Contact sent:', result)
   } catch (error) {
     console.error('❌ Error:', error.message)
   }

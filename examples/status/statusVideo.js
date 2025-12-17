@@ -9,46 +9,46 @@ async function main() {
   try {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     
-    console.log('🎥 Creando estado de video...')
+    console.log('🎥 Creating video status...')
     
-    // El video debe ser MP4 con códec H.264
-    // Nota: id debe ser null, contacts se filtra automáticamente (duplicados y mal formados se omiten)
+    // Video must be MP4 with H.264 codec
+    // Note: id must be null, contacts are automatically filtered (duplicates and malformed are omitted)
     
-    // Opción 1: Desde URL
+    // Option 1: From URL
     const result = await statusVideo({
       pathParams: { session: sessionName },
       body: {
-        id: null, // Requerido: debe ser null
-        contacts: ["51111111111@c.us", "51111111111@c.us"], // Duplicados se filtran automáticamente
-        caption: 'Mira este video!',
+        id: null, // Required: must be null
+        contacts: ["51111111111@c.us", "51111111111@c.us"], // Duplicates are automatically filtered
+        caption: 'Check out this video!',
         file: {
           mimetype: 'video/mp4',
           filename: 'status.mp4',
-          url: 'https://example.com/status.mp4' // ⚠️ Cambia por tu URL válida
+          url: 'https://example.com/status.mp4' // ⚠️ Change to your valid URL
         },
-        convert: true // true si necesitas conversión de formato (ej: otros formatos a MP4/H.264)
+        convert: true // true if you need format conversion (e.g., other formats to MP4/H.264)
       }
     })
     
-    console.log('✅ Estado de video creado (URL):', result)
+    console.log('✅ Video status created (URL):', result)
     
-    // Opción 2: Desde base64
+    // Option 2: From base64
     const result2 = await statusVideo({
       pathParams: { session: sessionName },
       body: {
-        id: null, // Requerido: debe ser null
-        contacts: ["51111111111@c.us"], // Duplicados y mal formados se filtran automáticamente
-        caption: 'Video desde base64',
+        id: null, // Required: must be null
+        contacts: ["51111111111@c.us"], // Duplicates and malformed are automatically filtered
+        caption: 'Video from base64',
         file: {
           mimetype: 'video/mp4',
           filename: 'status.mp4',
-          data: 'AAAAGGZ0eXBt....' // Base64 del archivo MP4
+          data: 'AAAAGGZ0eXBt....' // Base64 of MP4 file
         },
         convert: false
       }
     })
     
-    console.log('✅ Estado de video creado (base64):', result2)
+    console.log('✅ Video status created (base64):', result2)
   } catch (error) {
     console.error('❌ Error:', error.message)
   }

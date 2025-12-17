@@ -10,7 +10,7 @@ async function main() {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     const contactId = '51111111111@c.us'
     
-    console.log(`👤 Obteniendo información del contacto ${contactId}...`)
+    console.log(`👤 Getting contact information for ${contactId}...`)
     
     const contact = await contactsGetBasic({
       query: {
@@ -19,9 +19,9 @@ async function main() {
       }
     })
     
-    console.log('✅ Información del contacto:')
+    console.log('✅ Contact information:')
     console.log(`  ID: ${contact.id}`)
-    console.log(`  Nombre: ${contact.name || 'Sin nombre'}`)
+    console.log(`  Name: ${contact.name || 'No name'}`)
     if (contact.pushname) {
       console.log(`  Push Name: ${contact.pushname}`)
     }

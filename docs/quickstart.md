@@ -1,66 +1,66 @@
 # Quick Start Guide
 
-Esta guía te ayudará a comenzar rápidamente con `@notibuzz/noti-sdk-js`.
+This guide will help you get started quickly with `@notibuzz/noti-sdk-js`.
 
-## Instalación
+## Installation
 
 ```bash
 npm install @notibuzz/noti-sdk-js
 ```
 
-## Configuración básica
+## Basic Configuration
 
-### 1. Configurar variables de entorno (recomendado)
+### 1. Configure environment variables (recommended)
 
-Crea un archivo `.env`:
+Create a `.env` file:
 
 ```env
 NOTI_URL='your_base_url'
 NOTI_KEY=your_api_key_here
 ```
 
-### 2. O configurar en código
+### 2. Or configure in code
 
-**Sintaxis recomendada (objeto):**
+**Recommended syntax (object):**
 ```typescript
 import { configureClient } from '@notibuzz/noti-sdk-js'
 
 configureClient({
-  notiUrl: ''your_base_url'',
+  notiUrl: 'your_base_url',
   notiApiKey: 'your_api_key'
 })
 ```
 
-**Sintaxis tradicional (también soportada):**
+**Traditional syntax (also supported):**
 ```typescript
-configureClient(''your_base_url'', 'your_api_key')
+configureClient('your_base_url', 'your_api_key')
 ```
 
-## Primer ejemplo: Enviar un mensaje
+## First Example: Send a Message
 
 ```typescript
 import { configureClient, sendMessage } from '@notibuzz/noti-sdk-js'
 
-// Configurar cliente
+// Configure client
 configureClient({
   notiUrl: process.env.NOTI_URL!,
   notiApiKey: process.env.NOTI_KEY!
 })
 
-// Enviar mensaje usando el endpoint genérico sendMessage
+// Send message using the generic sendMessage endpoint
 async function main() {
   try {
     const result = await sendMessage({
-  body: {
+      body: {
         type: 'text',
         payload: {
-    session: 'default',
-    chatId: '51987654321@c.us',
-          text: '¡Hola desde el SDK!'
-  }
+          session: 'default',
+          chatId: '51987654321@c.us',
+          text: 'Hello from the SDK!'
+        }
       }
     })
-    console.log('Mensaje enviado:', result)
+    console.log('Message sent:', result)
   } catch (error) {
     console.error('Error:', error)
   }
@@ -69,7 +69,7 @@ async function main() {
 main()
 ```
 
-## Ejemplo: Listar sesiones
+## Example: List Sessions
 
 ```typescript
 import { configureClient, listSessions } from '@notibuzz/noti-sdk-js'
@@ -80,14 +80,14 @@ configureClient({
 })
 
 async function main() {
-const sessions = await listSessions({ query: { all: true } })
-  console.log('Sesiones:', sessions)
+  const sessions = await listSessions({ query: { all: true } })
+  console.log('Sessions:', sessions)
 }
 
 main()
 ```
 
-## Ejemplo: Envío masivo
+## Example: Bulk Sending
 
 ```typescript
 import { configureClient, sendMessage } from '@notibuzz/noti-sdk-js'
@@ -97,14 +97,14 @@ configureClient(process.env.NOTI_URL!, process.env.NOTI_KEY!)
 async function main() {
   const result = await sendMessage({
     body: {
-      intervalMs: 20000, // 20 segundos entre mensajes
+      intervalMs: 20000, // 20 seconds between messages
       messages: [
         {
           type: 'text',
           payload: {
             session: 'default',
             chatId: '51987654321@c.us',
-            text: 'Mensaje 1'
+            text: 'Message 1'
           }
         },
         {
@@ -112,7 +112,7 @@ async function main() {
           payload: {
             session: 'default',
             chatId: '51987654322@c.us',
-            text: 'Mensaje 2'
+            text: 'Message 2'
           }
         }
       ],
@@ -123,13 +123,13 @@ async function main() {
     }
   })
   
-  console.log('Campaña encolada:', result)
+  console.log('Campaign enqueued:', result)
 }
 
 main()
 ```
 
-## Ejemplo: Envío asíncrono
+## Example: Async Sending
 
 ```typescript
 import { configureClient, sendMessage } from '@notibuzz/noti-sdk-js'
@@ -137,27 +137,27 @@ import { configureClient, sendMessage } from '@notibuzz/noti-sdk-js'
 configureClient(process.env.NOTI_URL!, process.env.NOTI_KEY!)
 
 async function main() {
-  // El mensaje se encolará y procesará en segundo plano
+  // The message will be enqueued and processed in the background
   const result = await sendMessage({
     body: {
       type: 'text',
       payload: {
         session: 'default',
         chatId: '51987654321@c.us',
-        text: 'Mensaje asíncrono'
+        text: 'Async message'
       }
     },
     async: true
   })
   
-  console.log('Mensaje encolado:', result.jobId)
+  console.log('Message enqueued:', result.jobId)
 }
 
 main()
 ```
 
-## Siguientes pasos
+## Next Steps
 
-- Lee la [documentación completa del API](API.md)
-- Revisa los [ejemplos](../examples/) para más casos de uso
-- Consulta el [README](../README.md) para información detallada
+- Read the [complete API documentation](API.md)
+- Check the [examples](../examples/) for more use cases
+- See the [README](../README.md) for detailed information

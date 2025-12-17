@@ -11,9 +11,9 @@ async function main() {
     const chatId = '51111111111@c.us'
     const messageId = 'false_51111111111@c.us_AAAAAAAAAAAAAAAAAAAA'
     
-    console.log('📌 Pineando mensaje...')
+    console.log('📌 Pinning message...')
     
-    // Pinear por 24 horas (86400 segundos)
+    // Pin for 24 hours (86400 seconds)
     const result = await chatsPinMessage({
       pathParams: {
         session: sessionName,
@@ -21,15 +21,15 @@ async function main() {
         messageId: messageId
       },
       body: {
-        duration: 86400 // 24 horas
-        // 7 días = 604800
-        // 30 días = 2592000
+        duration: 86400 // 24 hours
+        // 7 days = 604800
+        // 30 days = 2592000
       }
     })
     
-    console.log('✅ Mensaje pineado:', result)
+    console.log('✅ Message pinned:', result)
     
-    // Para despinear:
+    // To unpin:
     /*
     const result2 = await chatsUnpinMessage({
       pathParams: {
