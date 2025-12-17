@@ -137,33 +137,3 @@ export async function chatsUnpinMessage<T = any>(args: { pathParams?: Record<str
   const p = makePath('/api/{session}/chats/{chatId}/messages/{messageId}/unpin', args.pathParams) || '/api/{session}/chats/{chatId}/messages/{messageId}/unpin'
   return getClient().post<T>(p, args.body)
 }
-
-/**
- * Archiva el chat (lo mueve a archivados).
- * Method: POST
- * Path: /api/{session}/chats/{chatId}/archive
- */
-export async function chatsArchive<T = any>(args: { pathParams?: Record<string, string | number | boolean>, query?: Record<string, any>, body?: any } = {}): Promise<T> {
-  const p = makePath('/api/{session}/chats/{chatId}/archive', args.pathParams) || '/api/{session}/chats/{chatId}/archive'
-  return getClient().post<T>(p, args.body)
-}
-
-/**
- * Quita el chat de archivados.
- * Method: POST
- * Path: /api/{session}/chats/{chatId}/unarchive
- */
-export async function chatsUnarchive<T = any>(args: { pathParams?: Record<string, string | number | boolean>, query?: Record<string, any>, body?: any } = {}): Promise<T> {
-  const p = makePath('/api/{session}/chats/{chatId}/unarchive', args.pathParams) || '/api/{session}/chats/{chatId}/unarchive'
-  return getClient().post<T>(p, args.body)
-}
-
-/**
- * Marca el chat como no leído.
- * Method: POST
- * Path: /api/{session}/chats/{chatId}/unread
- */
-export async function chatsUnread<T = any>(args: { pathParams?: Record<string, string | number | boolean>, query?: Record<string, any>, body?: any } = {}): Promise<T> {
-  const p = makePath('/api/{session}/chats/{chatId}/unread', args.pathParams) || '/api/{session}/chats/{chatId}/unread'
-  return getClient().post<T>(p, args.body)
-}

@@ -548,10 +548,7 @@ import {
   chatsReadMessages,
   chatsEditMessage,
   chatsPinMessage,
-  chatsUnpinMessage,
-  chatsArchive,
-  chatsUnarchive,
-  chatsUnread
+  chatsUnpinMessage
 } from '@notibuzz/noti-sdk-js'
 
 // Listar chats
@@ -722,7 +719,7 @@ Todos los endpoints están documentados con tipos TypeScript. Para ver la lista 
 - **Profile**: `getMyProfile`, `setProfileName`, `setProfileStatus`, `setProfilePicture`, `deleteProfilePicture`
 - **Chatting**: `sendMessage` (endpoint genérico para todos los tipos: text, image, file, voice, video, poll, location, contact-vcard, forward, list, seen), `reaction`, `startTyping`, `stopTyping`
 - **Status**: `statusText`, `statusImage`, `statusVoice`, `statusVideo`, `statusDelete`
-- **Chats**: `chatsGet`, `chatsOverviewGet`, `chatsOverviewPost`, `chatsGetMessages`, `chatsReadMessages`, `chatsGetMessage`, `chatsDeleteMessage`, `chatsEditMessage`, `chatsPinMessage`, `chatsUnpinMessage`, `chatsArchive`, `chatsUnarchive`, `chatsUnread`
+- **Chats**: `chatsGet`, `chatsOverviewGet`, `chatsOverviewPost`, `chatsGetMessages`, `chatsReadMessages`, `chatsGetMessage`, `chatsDeleteMessage`, `chatsEditMessage`, `chatsPinMessage`, `chatsUnpinMessage`
 - **Contacts**: `contactsGetAll`, `contactsGetBasic`, `contactsCheckExists`, `contactsProfilePicture`, `contactsGetAbout`, `contactsBlock`, `contactsUnblock`, `contactsUpsert`
 - **Bulk**: `bulkStopCampaign`, `bulkResumeCampaign`, `bulkAvailability`
 
