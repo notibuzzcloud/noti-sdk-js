@@ -14,7 +14,9 @@
     "notibuzz",
     "notibuzz-cloud",
     "typescript",
-    "nodejs"
+    "nodejs",
+    "notibuzz-sdk",
+    "notibuzz-cloud-sdk"
   ],
   "author": {
     "name": "Diego Quiroz Ramirez - CEO NotiBuzz Cloud",
