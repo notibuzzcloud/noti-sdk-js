@@ -10,12 +10,12 @@ async function main() {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     const chatId = '51111111111@c.us'
     
-    console.log('🎤 Enviando nota de voz...')
+    console.log('🎤 Sending voice note...')
     
-    // WhatsApp solo acepta archivos con codificación OPUS y empaquetados en un contenedor OGG
-    // Si tienes un archivo en otro formato (como MP3), puedes usar "convert": true
+    // WhatsApp only accepts files with OPUS encoding packaged in an OGG container
+    // If you have a file in another format (like MP3), you can use "convert": true
     
-    // Opción 1: Desde URL
+    // Option 1: From URL
     const result = await sendMessage({
       body: {
         type: 'voice',
@@ -31,9 +31,9 @@ async function main() {
       }
     })
     
-    console.log('✅ Nota de voz enviada (URL):', result)
+    console.log('✅ Voice note sent (URL):', result)
     
-    // Opción 2: Desde base64
+    // Option 2: From base64
     const result2 = await sendMessage({
       body: {
         type: 'voice',
@@ -50,7 +50,7 @@ async function main() {
       }
     })
     
-    console.log('✅ Nota de voz enviada (base64):', result2)
+    console.log('✅ Voice note sent (base64):', result2)
   } catch (error) {
     console.error('❌ Error:', error.message)
   }

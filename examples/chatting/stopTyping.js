@@ -10,7 +10,7 @@ async function main() {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     const chatId = '51111111111@c.us'
     
-    console.log('⏹️ Deteniendo estado de escritura...')
+    console.log('⏹️ Stopping typing status...')
     
     const result = await stopTyping({
       body: {
@@ -19,7 +19,7 @@ async function main() {
       }
     })
     
-    console.log('✅ Estado de escritura detenido:', result)
+    console.log('✅ Typing status stopped:', result)
   } catch (error) {
     console.error('❌ Error:', error.message)
   }

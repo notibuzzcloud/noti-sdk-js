@@ -9,13 +9,13 @@ async function main() {
   try {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     
-    console.log('🗑️ Eliminando foto de perfil...')
+    console.log('🗑️ Deleting profile picture...')
     
     const result = await deleteProfilePicture({ 
       pathParams: { session: sessionName }
     })
     
-    console.log('✅ Foto de perfil eliminada:', result)
+    console.log('✅ Profile picture deleted:', result)
   } catch (error) {
     console.error('❌ Error:', error.message)
   }

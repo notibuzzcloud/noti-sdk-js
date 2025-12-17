@@ -8,9 +8,9 @@ configureClient({
 async function main() {
   try {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
-    const chatId = '51111111111@c.us' // Cambia por el chatId real
+    const chatId = '51111111111@c.us' // Change to your real chatId
     
-    console.log('🔗 Enviando mensaje con vista previa personalizada...')
+    console.log('🔗 Sending message with custom preview...')
     
     const result = await sendMessage({
       body: {
@@ -33,7 +33,7 @@ async function main() {
       }
     })
     
-    console.log('✅ Mensaje con vista previa enviado:', result)
+    console.log('✅ Message with preview sent:', result)
   } catch (error) {
     console.error('❌ Error:', error.message)
   }

@@ -9,13 +9,13 @@ async function main() {
   try {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     
-    console.log(`📄 Obteniendo información de la sesión "${sessionName}"...`)
+    console.log(`📄 Getting session information for "${sessionName}"...`)
     
     const session = await getSession({ 
       pathParams: { session: sessionName } 
     })
     
-    console.log('✅ Información de la sesión:')
+    console.log('✅ Session information:')
     console.log(JSON.stringify(session, null, 2))
   } catch (error) {
     console.error('❌ Error:', error.message)

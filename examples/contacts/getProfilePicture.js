@@ -10,21 +10,21 @@ async function main() {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     const contactId = '51111111111@c.us'
     
-    console.log(`📷 Obteniendo foto de perfil del contacto...`)
+    console.log(`📷 Getting contact profile picture...`)
     
     const result = await contactsProfilePicture({
       query: {
         session: sessionName,
         contactId: contactId,
-        refresh: false // true para forzar actualización
+        refresh: false // true to force update
       }
     })
     
     if (result.profilePictureURL) {
-      console.log('✅ Foto de perfil encontrada:')
+      console.log('✅ Profile picture found:')
       console.log(`   URL: ${result.profilePictureURL}`)
     } else {
-      console.log('ℹ️ El contacto no tiene foto de perfil o es privada')
+      console.log('ℹ️ Contact does not have a profile picture or it is private')
     }
   } catch (error) {
     console.error('❌ Error:', error.message)

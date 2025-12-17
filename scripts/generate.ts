@@ -1,12 +1,12 @@
 import { promises as fs } from 'fs'
 import path from 'path'
 
-// Importa las categorías desde data.ts en el root del proyecto
+// Import categories from data.ts in the project root
 import { apiCategories } from '../data.ts'
 
 function toCamelCase(id: string): string {
   return id
-    .replace(/^[^a-zA-Z]+|[^a-zA-Z0-9]+/g, ' ') // separa no-alfanum
+    .replace(/^[^a-zA-Z]+|[^a-zA-Z0-9]+/g, ' ') // separate non-alphanumeric
     .trim()
     .split(/\s+/)
     .map((w, i) => i === 0 ? w.toLowerCase() : w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
@@ -21,7 +21,7 @@ function fillPath(pathTpl: string, params?: Record<string, string | number | boo
   if (!params) return pathTpl
   return pathTpl.replace(/\{(\w+)\}/g, (_, key) => {
     const v = params[key]
-    if (v === undefined) throw new Error(`Falta pathParam: ${key}`)
+    if (v === undefined) throw new Error(`Missing pathParam: ${key}`)
     return encodeURIComponent(String(v))
   })
 }
@@ -77,7 +77,7 @@ async function generateDocs(root: string, categories: any[]) {
 
   const out: string[] = []
   out.push(`# Endpoints`)
-  out.push(`\nDocumentación generada desde data.ts. Usa NOTI_URL y NOTI_KEY para tus llamadas.`)
+  out.push(`\nDocumentation generated from data.ts. Use NOTI_URL and NOTI_KEY for your calls.`)
 
   for (const c of categories) {
     out.push(`\n## ${c.name} (${c.key})`)
@@ -85,7 +85,7 @@ async function generateDocs(root: string, categories: any[]) {
       out.push(`\n### ${ep.id} — ${ep.title || ''}`)
       out.push(`- Method: ${ep.method}`)
       out.push(`- Path: \`${ep.path}\``)
-      if (ep.description) out.push(`- Descripción: ${ep.description}`)
+      if (ep.description) out.push(`- Description: ${ep.description}`)
       if (ep.bodyExample) {
         out.push(`\nBody example:`)
         out.push('```json')
@@ -113,9 +113,9 @@ async function generateDocs(root: string, categories: any[]) {
 async function main() {
   const root = process.cwd()
   const categories = apiCategories
-  if (!Array.isArray(categories)) throw new Error('apiCategories no es un arreglo')
+  if (!Array.isArray(categories)) throw new Error('apiCategories is not an array')
 
-  // Generar archivos por categoría
+  // Generate files by category
   for (const c of categories) {
     await generateCategoryFile(root, c.key, c.endpoints)
   }
@@ -123,10 +123,10 @@ async function main() {
   await generateIndex(root, categories)
   await generateDocs(root, categories)
 
-  console.log('Generación completa: endpoints y docs actualizados.')
+  console.log('Generation complete: endpoints and docs updated.')
 }
 
 main().catch(err => {
-  console.error('Error generando SDK:', err)
+  console.error('Error generating SDK:', err)
   process.exit(1)
 })

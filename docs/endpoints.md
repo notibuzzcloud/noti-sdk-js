@@ -1,13 +1,13 @@
 # Endpoints
 
-Documentación generada desde data.ts. Usa NOTI_URL y NOTI_KEY para tus llamadas.
+Documentation generated from data.ts. Use NOTI_URL and NOTI_KEY for your calls.
 
 ## Sessions (sessions)
 
-### list-sessions — Listar sesiones
+### list-sessions — List sessions
 - Method: GET
 - Path: `/api/sessions`
-- Descripción: Lista todas las sesiones; usa ?all=true para incluir STOPPED.
+- Description: List all sessions; use ?all=true to include STOPPED.
 
 Curl:
 ```bash
@@ -26,10 +26,10 @@ Response:
 ]
 ```
 
-### get-session — Información de la sesión
+### get-session — Session information
 - Method: GET
 - Path: `/api/sessions/{session}`
-- Descripción: Obtén información detallada de una sesión por nombre.
+- Description: Get detailed information about a session by name.
 
 Curl:
 ```bash
@@ -48,10 +48,10 @@ Response:
 }
 ```
 
-### get-session-me — Cuenta autenticada
+### get-session-me — Authenticated account
 - Method: GET
 - Path: `/api/sessions/{session}/me`
-- Descripción: Información de la cuenta autenticada de la sesión.
+- Description: Information about the authenticated account of the session.
 
 Curl:
 ```bash
@@ -74,7 +74,7 @@ Response:
 ### get-my-profile — Get my profile
 - Method: GET
 - Path: `/api/{session}/profile`
-- Descripción: Obtén la información del perfil de la cuenta.
+- Description: Get the account profile information.
 
 Curl:
 ```bash
@@ -93,7 +93,7 @@ Response:
 ### set-profile-name — Set my profile name
 - Method: PUT
 - Path: `/api/{session}/profile/name`
-- Descripción: Actualiza el nombre del perfil.
+- Description: Update the profile name.
 
 Body example:
 ```json
@@ -119,7 +119,7 @@ Response:
 ### set-profile-status — Set profile status (About)
 - Method: PUT
 - Path: `/api/{session}/profile/status`
-- Descripción: Actualiza el estado (About) del perfil.
+- Description: Update the profile status (About).
 
 Body example:
 ```json
@@ -145,7 +145,7 @@ Response:
 ### set-profile-picture — Set profile picture
 - Method: PUT
 - Path: `/api/{session}/profile/picture`
-- Descripción: Actualiza la foto de perfil; acepta archivo remoto o binario.
+- Description: Update the profile picture; accepts remote file or binary.
 
 Body example:
 ```json
@@ -179,7 +179,7 @@ Response:
 ### delete-profile-picture — Delete profile picture
 - Method: DELETE
 - Path: `/api/{session}/profile/picture`
-- Descripción: Elimina la foto de perfil.
+- Description: Delete the profile picture.
 
 Curl:
 ```bash
@@ -195,10 +195,10 @@ Response:
 
 ## Chatting (chatting)
 
-### send-text — Enviar texto
+### send-text — Send text
 - Method: POST
 - Path: `/api/sendText`
-- Descripción: Envía un mensaje de texto.
+- Description: Send a text message.
 
 Body example:
 ```json
@@ -246,10 +246,10 @@ Response:
 }
 ```
 
-### send-link-custom-preview — Enviar texto con vista previa personalizada
+### send-link-custom-preview — Send text with custom preview
 - Method: POST
 - Path: `/api/send/link-custom-preview`
-- Descripción: Envía texto con vista previa (título, descripción, imagen).
+- Description: Send text with preview (title, description, image).
 
 Body example:
 ```json
@@ -341,10 +341,10 @@ Response:
 }
 ```
 
-### send-image — Enviar imagen
+### send-image — Send image
 - Method: POST
 - Path: `/api/sendImage`
-- Descripción: Envía una imagen desde URL o base64.
+- Description: Send an image from URL or base64.
 
 Body example:
 ```json
@@ -427,10 +427,10 @@ Response:
 }
 ```
 
-### send-file — Enviar archivo
+### send-file — Send file
 - Method: POST
 - Path: `/api/sendFile`
-- Descripción: Envía un archivo desde URL o base64.
+- Description: Send a file from URL or base64.
 
 Body example:
 ```json
@@ -509,10 +509,10 @@ Response:
 }
 ```
 
-### send-voice — Enviar nota de voz
+### send-voice — Send voice note
 - Method: POST
 - Path: `/api/sendVoice`
-- Descripción: Envía una nota de voz por URL o BASE64. Campos: file.url o file.data; establece el mimetype como "audio/ogg; codecs=opus". WhatsApp acepta solo OPUS en contenedor OGG. Si no tienes el formato correcto, usa "convert": true para que el sistema lo convierta.
+- Description: Send a voice note via URL or BASE64. Fields: file.url or file.data; set mimetype as "audio/ogg; codecs=opus". WhatsApp only accepts OPUS in OGG container. If you don't have the correct format, use "convert": true to let the system convert it.
 
 Body example:
 ```json
@@ -611,10 +611,10 @@ Response:
 }
 ```
 
-### send-video — Enviar video
+### send-video — Send video
 - Method: POST
 - Path: `/api/sendVideo`
-- Descripción: Usa URL o BASE64 para enviar video. Campos: file.url o file.data; puedes añadir "caption" y "asNote" (video redondo). WhatsApp acepta solo MP4 con códec H.264 (libx264). Si no tienes el formato correcto, usa "convert": true.
+- Description: Use URL or BASE64 to send video. Fields: file.url or file.data; you can add "caption" and "asNote" (round video). WhatsApp only accepts MP4 with H.264 codec (libx264). If you don't have the correct format, use "convert": true.
 
 Body example:
 ```json
@@ -728,10 +728,10 @@ Response:
 }
 ```
 
-### reaction — Reaccionar a mensaje
+### reaction — React to message
 - Method: PUT
 - Path: `/api/reaction`
-- Descripción: Agrega o elimina una reacción en un mensaje.
+- Description: Add or remove a reaction on a message.
 
 Body example:
 ```json
@@ -785,10 +785,10 @@ Response:
 }
 ```
 
-### mark-read — Marcar como leído
+### mark-read — Mark as read
 - Method: POST
 - Path: `/api/sendSeen`
-- Descripción: Marca mensajes como leídos en un chat. Si no envías IDs, lee los últimos 7 días y devuelve los IDs.
+- Description: Mark messages as read in a chat. If you don't send IDs, it reads the last 7 days and returns the IDs.
 
 Body example:
 ```json
@@ -821,10 +821,10 @@ Response:
 }
 ```
 
-### send-poll — Enviar encuesta
+### send-poll — Send poll
 - Method: POST
 - Path: `/api/sendPoll`
-- Descripción: Envía una encuesta con opciones.
+- Description: Send a poll with options.
 
 Body example:
 ```json
@@ -911,10 +911,10 @@ Response:
 }
 ```
 
-### send-location — Enviar ubicación
+### send-location — Send location
 - Method: POST
 - Path: `/api/sendLocation`
-- Descripción: Envía una ubicación con latitud, longitud y título.
+- Description: Send a location with latitude, longitude and title.
 
 Body example:
 ```json
@@ -968,10 +968,10 @@ Response:
 }
 ```
 
-### send-contact-vcard — Enviar contacto (vCard)
+### send-contact-vcard — Send contact (vCard)
 - Method: POST
 - Path: `/api/sendContactVcard`
-- Descripción: Envía uno o más contactos en formato vCard o datos de contacto.
+- Description: Send one or more contacts in vCard format or contact data.
 
 Body example:
 ```json
@@ -1038,10 +1038,10 @@ END:VCARD"
 }
 ```
 
-### forward-message — Reenviar mensaje
+### forward-message — Forward message
 - Method: POST
 - Path: `/api/forwardMessage`
-- Descripción: Reenvía un mensaje existente a otro chat.
+- Description: Forward an existing message to another chat.
 
 Body example:
 ```json
@@ -1111,10 +1111,10 @@ END:VCARD",
 }
 ```
 
-### start-typing — Empezar a escribir
+### start-typing — Start typing
 - Method: POST
 - Path: `/api/startTyping`
-- Descripción: Inicia estado de escritura en un chat.
+- Description: Start typing status in a chat.
 
 Body example:
 ```json
@@ -1139,10 +1139,10 @@ Response:
 }
 ```
 
-### stop-typing — Detener escritura
+### stop-typing — Stop typing
 - Method: POST
 - Path: `/api/stopTyping`
-- Descripción: Detiene el estado de escritura en un chat.
+- Description: Stop typing status in a chat.
 
 Body example:
 ```json
@@ -1169,10 +1169,10 @@ Response:
 
 ## Status (status)
 
-### status-text — Enviar estado de texto
+### status-text — Send text status
 - Method: POST
 - Path: `/api/{session}/status/text`
-- Descripción: Publica un estado de texto; puede incluir vista previa de enlaces.
+- Description: Publish a text status; can include link preview.
 
 Body example:
 ```json
@@ -1240,10 +1240,10 @@ Response:
 }
 ```
 
-### status-image — Enviar estado de imagen
+### status-image — Send image status
 - Method: POST
 - Path: `/api/{session}/status/image`
-- Descripción: Publica un estado de imagen (URL o Base64).
+- Description: Publish an image status (URL or Base64).
 
 Body example:
 ```json
@@ -1352,10 +1352,10 @@ Response:
 }
 ```
 
-### status-voice — Enviar estado de voz
+### status-voice — Send voice status
 - Method: POST
 - Path: `/api/{session}/status/voice`
-- Descripción: Publica un estado de voz vía URL o Base64. El archivo debe estar en OGG (OPUS). Usa "convert": true si tu audio no cumple el formato.
+- Description: Publish a voice status via URL or Base64. The file must be in OGG (OPUS) format. Use "convert": true if your audio doesn't meet the format.
 
 Body example:
 ```json
@@ -1458,10 +1458,10 @@ Response:
 }
 ```
 
-### status-video — Enviar estado de video
+### status-video — Send video status
 - Method: POST
 - Path: `/api/{session}/status/video`
-- Descripción: Publica un estado de video vía URL o Base64. El video debe ser MP4 con códec H.264 (libx264). Usa "convert": true si tu video no cumple el formato.
+- Description: Publish a video status via URL or Base64. The video must be MP4 with H.264 codec (libx264). Use "convert": true if your video doesn't meet the format.
 
 Body example:
 ```json
@@ -1569,10 +1569,10 @@ Response:
 }
 ```
 
-### status-delete — Eliminar estado enviado
+### status-delete — Delete sent status
 - Method: POST
 - Path: `/api/{session}/status/delete`
-- Descripción: Elimina un estado previamente enviado por su ID. Puedes limitarlo a una lista de contactos.
+- Description: Delete a previously sent status by its ID. You can limit it to a list of contacts.
 
 Body example:
 ```json
@@ -1630,10 +1630,10 @@ Response:
 
 ## Chats (chats)
 
-### chats-overview-get — Listado de chats (overview)
+### chats-overview-get — Chat list (overview)
 - Method: GET
 - Path: `/api/{session}/chats/overview`
-- Descripción: Obtén el resumen de chats (id, nombre, foto, último mensaje). Ordenado por timestamp del último mensaje.
+- Description: Get chat overview (id, name, photo, last message). Sorted by last message timestamp.
 
 Curl:
 ```bash
@@ -1692,10 +1692,10 @@ Response:
 ]
 ```
 
-### chats-get-picture — Foto del chat
+### chats-get-picture — Chat picture
 - Method: GET
 - Path: `/api/{session}/chats/{chatId}/picture`
-- Descripción: Obtiene la foto de perfil del chat. Usa refresh=true si necesitas forzar actualización (caché ~24h).
+- Description: Get the chat profile picture. Use refresh=true if you need to force update (cache ~24h).
 
 Curl:
 ```bash
@@ -1709,10 +1709,10 @@ Response:
 }
 ```
 
-### chats-get-messages — Mensajes del chat
+### chats-get-messages — Chat messages
 - Method: GET
 - Path: `/api/{session}/chats/{chatId}/messages`
-- Descripción: Lista los mensajes del chat con filtros y paginación. Soporta descarga de media.
+- Description: List chat messages with filters and pagination. Supports media download.
 
 Curl:
 ```bash
@@ -1779,10 +1779,10 @@ Response:
 ]
 ```
 
-### chats-read-messages — Marcar mensajes como leídos
+### chats-read-messages — Mark messages as read
 - Method: POST
 - Path: `/api/{session}/chats/{chatId}/messages/read`
-- Descripción: Marca mensajes como leídos (últimos primero). Puedes limitar por cantidad o días).
+- Description: Mark messages as read (latest first). You can limit by quantity or days.
 
 Curl:
 ```bash
@@ -1796,10 +1796,10 @@ Response:
 }
 ```
 
-### chats-get-message — Obtener mensaje por ID
+### chats-get-message — Get message by ID
 - Method: GET
 - Path: `/api/{session}/chats/{chatId}/messages/{messageId}`
-- Descripción: Obtiene un mensaje específico por su ID. Puede descargar media asociada.
+- Description: Get a specific message by its ID. Can download associated media.
 
 Curl:
 ```bash
@@ -1837,10 +1837,10 @@ Response:
 }
 ```
 
-### chats-delete-message — Eliminar mensaje del chat
+### chats-delete-message — Delete message from chat
 - Method: DELETE
 - Path: `/api/{session}/chats/{chatId}/messages/{messageId}`
-- Descripción: Elimina un mensaje específico del chat por su ID.
+- Description: Delete a specific message from the chat by its ID.
 
 Curl:
 ```bash
@@ -1880,10 +1880,10 @@ Response:
 }
 ```
 
-### chats-edit-message — Editar mensaje del chat
+### chats-edit-message — Edit chat message
 - Method: PUT
 - Path: `/api/{session}/chats/{chatId}/messages/{messageId}`
-- Descripción: Edita el contenido de un mensaje existente. Puedes incluir vista previa de enlaces.
+- Description: Edit the content of an existing message. You can include link preview.
 
 Body example:
 ```json
@@ -1942,10 +1942,10 @@ Response:
 }
 ```
 
-### chats-pin-message — Pinear mensaje del chat
+### chats-pin-message — Pin chat message
 - Method: POST
 - Path: `/api/{session}/chats/{chatId}/messages/{messageId}/pin`
-- Descripción: Pinea un mensaje dentro del chat por una duración específica. 	
+- Description: Pin a message within the chat for a specific duration. 	
         - 24 hours - duration=86400
         - 7 days - duration=604800
         - 30 days - duration=2592000
@@ -1972,10 +1972,10 @@ Response:
 }
 ```
 
-### chats-unpin-message — Despinear mensaje del chat
+### chats-unpin-message — Unpin chat message
 - Method: POST
 - Path: `/api/{session}/chats/{chatId}/messages/{messageId}/unpin`
-- Descripción: Quita el pin de un mensaje dentro del chat.
+- Description: Remove the pin from a message within the chat.
 
 Curl:
 ```bash
@@ -1989,10 +1989,10 @@ Response:
 }
 ```
 
-### chats-archive — Archivar chat
+### chats-archive — Archive chat
 - Method: POST
 - Path: `/api/{session}/chats/{chatId}/archive`
-- Descripción: Archiva el chat (lo mueve a archivados).
+- Description: Archive the chat (moves it to archived).
 
 Curl:
 ```bash
@@ -2006,10 +2006,10 @@ Response:
 }
 ```
 
-### chats-unarchive — Desarchivar chat
+### chats-unarchive — Unarchive chat
 - Method: POST
 - Path: `/api/{session}/chats/{chatId}/unarchive`
-- Descripción: Quita el chat de archivados.
+- Description: Remove the chat from archived.
 
 Curl:
 ```bash
@@ -2023,10 +2023,10 @@ Response:
 }
 ```
 
-### chats-unread — Marcar chat como no leído
+### chats-unread — Mark chat as unread
 - Method: POST
 - Path: `/api/{session}/chats/{chatId}/unread`
-- Descripción: Marca el chat como no leído.
+- Description: Mark the chat as unread.
 
 Curl:
 ```bash
@@ -2042,10 +2042,10 @@ Response:
 
 ## Contacts (contacts)
 
-### contacts-get-basic — Obtener info básica del contacto
+### contacts-get-basic — Get basic contact information
 - Method: GET
 - Path: `/api/contacts`
-- Descripción: Devuelve datos básicos del contacto. Usa /contacts/check-exists para verificar si el número está registrado.
+- Description: Returns basic contact data. Use /contacts/check-exists to verify if the number is registered.
 
 Curl:
 ```bash
@@ -2062,10 +2062,10 @@ Response:
 }
 ```
 
-### contacts-check-exists — Verificar si número existe en WhatsApp
+### contacts-check-exists — Check if number exists on WhatsApp
 - Method: GET
 - Path: `/api/contacts/check-exists`
-- Descripción: Verifica si el número está registrado en WhatsApp.
+- Description: Verify if the number is registered on WhatsApp.
 
 Curl:
 ```bash
@@ -2080,10 +2080,10 @@ Response:
 }
 ```
 
-### contacts-profile-picture — Obtener URL de foto de perfil
+### contacts-profile-picture — Get profile picture URL
 - Method: GET
 - Path: `/api/contacts/profile-picture`
-- Descripción: Devuelve la URL de la foto de perfil. Puede retornar null por privacidad. Usa refresh para forzar actualización.
+- Description: Returns the profile picture URL. May return null for privacy. Use refresh to force update.
 
 Curl:
 ```bash
@@ -2097,10 +2097,10 @@ Response:
 }
 ```
 
-### contacts-upsert — Crear o actualizar contacto
+### contacts-upsert — Create or update contact
 - Method: PUT
 - Path: `/api/{session}/contacts/{chatId}`
-- Descripción: Crea o actualiza el contacto en la libreta del dispositivo.
+- Description: Create or update the contact in the device address book.
 
 Body example:
 ```json

@@ -9,9 +9,9 @@ async function main() {
   try {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     const chatId = '51111111111@c.us'
-    const messageId = 'true_51111111111@c.us_3EB02990E1DF2238954274' // Cambia por un messageId real
+    const messageId = 'true_51111111111@c.us_3EB02990E1DF2238954274' // Change to a real messageId
     
-    console.log('📨 Obteniendo mensaje específico...')
+    console.log('📨 Getting specific message...')
     
     const message = await chatsGetMessage({
       pathParams: {
@@ -24,10 +24,10 @@ async function main() {
       }
     })
     
-    console.log('✅ Mensaje obtenido:')
+    console.log('✅ Message obtained:')
     console.log(`  ID: ${message.id}`)
-    console.log(`  De: ${message.fromMe ? 'Yo' : message.from}`)
-    console.log(`  Cuerpo: ${message.body || '(media)'}`)
+    console.log(`  From: ${message.fromMe ? 'Me' : message.from}`)
+    console.log(`  Body: ${message.body || '(media)'}`)
     console.log(`  Timestamp: ${new Date(message.timestamp * 1000).toLocaleString()}`)
   } catch (error) {
     console.error('❌ Error:', error.message)

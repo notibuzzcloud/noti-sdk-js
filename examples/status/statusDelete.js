@@ -8,28 +8,28 @@ configureClient({
 async function main() {
   try {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
-    const statusId = '3EB0D04B6D96D71FEDC2AD' // ID del estado a eliminar
+    const statusId = '3EB0D04B6D96D71FEDC2AD' // ID of the status to delete
     
-    console.log('🗑️ Eliminando estado...')
+    console.log('🗑️ Deleting status...')
     
-    // Nota: id debe ser un string válido (ID del status), contacts debe tener al menos un elemento
+    // Note: id must be a valid string (status ID), contacts must have at least one element
     const result = await statusDelete({
       pathParams: { session: sessionName },
       body: {
-        id: statusId, // Requerido: ID del status a eliminar (string)
-        contacts: ["51111111111@c.us", "51111111111@c.us"] // Requerido: al menos un contacto (duplicados y mal formados se filtran automáticamente)
+        id: statusId, // Required: ID of the status to delete (string)
+        contacts: ["51111111111@c.us", "51111111111@c.us"] // Required: at least one contact (duplicates and malformed are automatically filtered)
       }
     })
     
-    console.log('✅ Estado eliminado:', result)
+    console.log('✅ Status deleted:', result)
     
-    // Ejemplo con un solo contacto:
+    // Example with a single contact:
     /*
     const result2 = await statusDelete({
       pathParams: { session: sessionName },
       body: {
-        id: statusId, // ID del status a eliminar
-        contacts: ['51987654321@c.us'] // Mínimo un contacto requerido
+        id: statusId, // ID of the status to delete
+        contacts: ['51987654321@c.us'] // Minimum one contact required
       }
     })
     */

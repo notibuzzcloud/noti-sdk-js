@@ -9,13 +9,13 @@ async function main() {
   try {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     
-    console.log('👤 Obteniendo información del perfil...')
+    console.log('👤 Getting profile information...')
     
     const profile = await getMyProfile({ 
       pathParams: { session: sessionName } 
     })
     
-    console.log('✅ Perfil:')
+    console.log('✅ Profile:')
     console.log(JSON.stringify(profile, null, 2))
   } catch (error) {
     console.error('❌ Error:', error.message)

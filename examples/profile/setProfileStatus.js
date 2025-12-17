@@ -10,14 +10,14 @@ async function main() {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     const newStatus = '🎉 Usando Noti Sender SDK!'
     
-    console.log(`✏️ Actualizando estado (About) del perfil...`)
+    console.log(`✏️ Updating profile status (About)...`)
     
     const result = await setProfileStatus({ 
       pathParams: { session: sessionName },
       body: { status: newStatus }
     })
     
-    console.log('✅ Estado actualizado:', result)
+    console.log('✅ Status updated:', result)
   } catch (error) {
     console.error('❌ Error:', error.message)
   }

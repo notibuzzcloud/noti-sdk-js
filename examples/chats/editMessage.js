@@ -11,7 +11,7 @@ async function main() {
     const chatId = '51111111111@c.us'
     const messageId = 'true_25718918484128@lid_A5CABC16A874A8F5923750CA14E5A141'
     
-    console.log('✏️ Editando mensaje...')
+    console.log('✏️ Editing message...')
     
     const result = await chatsEditMessage({
       pathParams: {
@@ -26,7 +26,7 @@ async function main() {
       }
     })
     
-    console.log('✅ Mensaje editado:', result)
+    console.log('✅ Message edited:', result)
   } catch (error) {
     console.error('❌ Error:', error.message)
   }

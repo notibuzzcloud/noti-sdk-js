@@ -10,7 +10,7 @@ async function main() {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     const chatId = '51111111111@c.us'
     
-    console.log('📊 Enviando encuesta...')
+    console.log('📊 Sending poll...')
     
     const result = await sendMessage({
       body: {
@@ -19,15 +19,15 @@ async function main() {
           session: sessionName,
           chatId: chatId,
           poll: {
-            name: '¿Cuál es tu color favorito?',
-            options: ['Rojo', 'Azul', 'Verde', 'Amarillo'],
-            selectableOptionsCount: 1 // 1 = selección única, >1 = múltiple
+            name: 'What is your favorite color?',
+            options: ['Red', 'Blue', 'Green', 'Yellow'],
+            selectableOptionsCount: 1 // 1 = single selection, >1 = multiple
           }
         }
       }
     })
     
-    console.log('✅ Encuesta enviada:', result)
+    console.log('✅ Poll sent:', result)
   } catch (error) {
     console.error('❌ Error:', error.message)
   }

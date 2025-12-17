@@ -11,7 +11,7 @@ async function main() {
     const chatId = '51111111111@c.us'
     const messageId = 'true_25718918484128@lid_A5F0519EC89D68E4352A917766747028'
     
-    console.log('🗑️ Eliminando mensaje...')
+    console.log('🗑️ Deleting message...')
     
     const result = await chatsDeleteMessage({
       pathParams: {
@@ -21,7 +21,7 @@ async function main() {
       }
     })
     
-    console.log('✅ Mensaje eliminado:', result)
+    console.log('✅ Message deleted:', result)
   } catch (error) {
     console.error('❌ Error:', error.message)
   }

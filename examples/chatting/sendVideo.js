@@ -10,12 +10,12 @@ async function main() {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     const chatId = '51111111111@c.us'
     
-    console.log('🎥 Enviando video...')
+    console.log('🎥 Sending video...')
     
-    // WhatsApp acepta solo MP4 con códec H.264 (libx264)
-    // Si no tienes el formato correcto, usa "convert": true
+    // WhatsApp only accepts MP4 with H.264 codec (libx264)
+    // If you don't have the correct format, use "convert": true
     
-    // Opción 1: Desde URL
+    // Option 1: From URL
     const result = await sendMessage({
       body: {
         type: 'video',
@@ -27,16 +27,16 @@ async function main() {
             filename: 'video.mp4',
             url: 'https://example.com/video.mp4'
           },
-          caption: 'Mira este video!',
+          caption: 'Check out this video!',
           asNote: false,
           convert: false
         }
       }
     })
     
-    console.log('✅ Video enviado (URL):', result)
+    console.log('✅ Video sent (URL):', result)
     
-    // Opción 2: Desde base64
+    // Option 2: From base64
     const result2 = await sendMessage({
       body: {
         type: 'video',
@@ -48,14 +48,14 @@ async function main() {
             filename: 'video.mp4',
             data: 'AAAAGGZ0eXBtcDQyAAAAAGlzb21tc....'
           },
-          caption: 'Video desde base64',
+          caption: 'Video from base64',
           asNote: false,
           convert: false
         }
       }
     })
     
-    console.log('✅ Video enviado (base64):', result2)
+    console.log('✅ Video sent (base64):', result2)
   } catch (error) {
     console.error('❌ Error:', error.message)
   }

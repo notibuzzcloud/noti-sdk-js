@@ -8,27 +8,27 @@ configureClient({
 async function main() {
   try {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
-    const messageId = 'true_51111111111@c.us_3EB09B7F7C4D979850CD33' // Cambia por un messageId real
+    const messageId = 'true_51111111111@c.us_3EB09B7F7C4D979850CD33' // Change to a real messageId
     
-    console.log('👍 Agregando reacción a mensaje...')
+    console.log('👍 Adding reaction to message...')
     
     const result = await reaction({
       body: {
         session: sessionName,
         messageId: messageId,
-        reaction: '👍' // Emoji de reacción
+        reaction: '👍' // Reaction emoji
       }
     })
     
-    console.log('✅ Reacción agregada:', result)
+    console.log('✅ Reaction added:', result)
     
-    // Para eliminar una reacción, envía una cadena vacía
+    // To remove a reaction, send an empty string
     /*
     const result2 = await reaction({
       body: {
         session: sessionName,
         messageId: messageId,
-        reaction: '' // Cadena vacía elimina la reacción
+        reaction: '' // Empty string removes the reaction
       }
     })
     */

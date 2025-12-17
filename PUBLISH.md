@@ -1,177 +1,176 @@
-# Guía de Publicación
+# Publishing Guide
 
-Esta guía explica cómo publicar `@notibuzz/noti-sdk-js` en npm y GitHub.
+This guide explains how to publish `@notibuzz/noti-sdk-js` to npm and GitHub.
 
-## Prerrequisitos
+## Prerequisites
 
-1. Tener una cuenta en [npm](https://www.npmjs.com/)
-2. Tener una cuenta en [GitHub](https://github.com/)
-3. Tener acceso al repositorio `notibuzzcloud/noti-sdk-js`
+1. Have an account on [npm](https://www.npmjs.com/)
+2. Have an account on [GitHub](https://github.com/)
+3. Have access to the `notibuzzcloud/noti-sdk-js` repository
 
-## Preparación
+## Preparation
 
-### 1. Verificar package.json
+### 1. Verify package.json
 
-Asegúrate de que `package.json` tenga:
-- ✅ Nombre único en npm
-- ✅ Versión correcta
-- ✅ Descripción clara
-- ✅ Keywords relevantes
-- ✅ Repository URL correcta
-- ✅ License especificada
+Make sure `package.json` has:
+- ✅ Unique name on npm
+- ✅ Correct version
+- ✅ Clear description
+- ✅ Relevant keywords
+- ✅ Correct repository URL
+- ✅ License specified
 
-### 2. Construir el proyecto
+### 2. Build the project
 
 ```bash
 npm run clean
 npm run build
 ```
 
-Esto generará los archivos en `dist/`.
+This will generate files in `dist/`.
 
-### 3. Verificar archivos incluidos
+### 3. Verify included files
 
-El archivo `.npmignore` controla qué archivos se incluyen en el paquete npm. Por defecto, solo se incluyen:
-- `dist/` (archivos compilados)
+The `.npmignore` file controls which files are included in the npm package. By default, only:
+- `dist/` (compiled files)
 - `README.md`
 - `LICENSE`
 
-## Publicar en npm
+## Publish to npm
 
-### Primera publicación
+### First publication
 
-1. **Iniciar sesión en npm:**
+1. **Login to npm:**
 ```bash
 npm login
 ```
 
-2. **Verificar que estás autenticado:**
+2. **Verify you're authenticated:**
 ```bash
 npm whoami
 ```
 
-3. **Publicar:**
+3. **Publish:**
 ```bash
 npm publish --access public
 ```
 
-> Nota: `--access public` es necesario para paquetes scoped o si quieres asegurar que sea público.
+> Note: `--access public` is required for scoped packages or if you want to ensure it's public.
 
-### Actualizaciones futuras
+### Future updates
 
-1. **Actualizar versión en package.json:**
+1. **Update version in package.json:**
 ```bash
-# Versión patch (0.1.0 -> 0.1.1)
+# Patch version (0.1.0 -> 0.1.1)
 npm version patch
 
-# Versión minor (0.1.0 -> 0.2.0)
+# Minor version (0.1.0 -> 0.2.0)
 npm version minor
 
-# Versión major (0.1.0 -> 1.0.0)
+# Major version (0.1.0 -> 1.0.1)
 npm version major
 ```
 
-2. **Actualizar CHANGELOG.md** con los cambios
+2. **Update CHANGELOG.md** with the changes
 
-3. **Construir y publicar:**
+3. **Build and publish:**
 ```bash
 npm run build
 npm publish
 ```
 
-> Nota: El script `prepublishOnly` se ejecutará automáticamente antes de publicar, limpiando y construyendo el proyecto.
+> Note: The `prepublishOnly` script will run automatically before publishing, cleaning and building the project.
 
-## Publicar en GitHub
+## Publish to GitHub
 
-### Crear repositorio
+### Create repository
 
-1. Ve a [GitHub](https://github.com/new)
-2. Crea un nuevo repositorio llamado `noti-sdk-js`
-3. No inicialices con README, .gitignore o LICENSE (ya los tenemos)
+1. Go to [GitHub](https://github.com/new)
+2. Create a new repository named `noti-sdk-js`
+3. Don't initialize with README, .gitignore or LICENSE (we already have them)
 
-### Configurar Git
+### Configure Git
 
 ```bash
-# Si aún no tienes el repositorio inicializado
+# If you don't have the repository initialized yet
 git init
 
-# Agregar remoto
+# Add remote
 git remote add origin https://github.com/notibuzzcloud/noti-sdk-js.git
 
-# Agregar archivos
+# Add files
 git add .
 
-# Commit inicial
+# Initial commit
 git commit -m "Initial commit: @notibuzz/noti-sdk-js v1.0.0"
 
-# Push a GitHub
+# Push to GitHub
 git branch -M main
 git push -u origin main
 ```
 
-### Crear release en GitHub
+### Create release on GitHub
 
-1. Ve a tu repositorio en GitHub
-2. Click en "Releases" → "Create a new release"
+1. Go to your repository on GitHub
+2. Click "Releases" → "Create a new release"
 3. Tag: `v1.0.0`
 4. Title: `v1.0.0 - Initial Release`
-5. Description: Copia el contenido de CHANGELOG.md
-6. Publicar release
+5. Description: Copy content from CHANGELOG.md
+6. Publish release
 
-## Verificación
+## Verification
 
-### Verificar en npm
+### Verify on npm
 
 ```bash
 npm view @notibuzz/noti-sdk-js
 ```
 
-O visita: https://www.npmjs.com/package/@notibuzz/noti-sdk-js
+Or visit: https://www.npmjs.com/package/@notibuzz/noti-sdk-js
 
-### Verificar instalación
+### Verify installation
 
 ```bash
 npm install @notibuzz/noti-sdk-js
 ```
 
-Luego en un proyecto de prueba:
+Then in a test project:
 
 ```typescript
 import { configureClient, sendMessage } from '@notibuzz/noti-sdk-js'
-// Debería funcionar sin errores
+// Should work without errors
 ```
 
-## Checklist antes de publicar
+## Checklist before publishing
 
-- [ ] `package.json` tiene información correcta
-- [ ] Versión actualizada
-- [ ] `README.md` está completo y actualizado
-- [ ] `LICENSE` está presente
-- [ ] `.npmignore` está configurado correctamente
-- [ ] `CHANGELOG.md` está actualizado
-- [ ] Código compila sin errores (`npm run build`)
-- [ ] Tests pasan (si los hay)
-- [ ] Ejemplos funcionan correctamente
-- [ ] Documentación está completa
+- [ ] `package.json` has correct information
+- [ ] Version updated
+- [ ] `README.md` is complete and updated
+- [ ] `LICENSE` is present
+- [ ] `.npmignore` is configured correctly
+- [ ] `CHANGELOG.md` is updated
+- [ ] Code compiles without errors (`npm run build`)
+- [ ] Tests pass (if any)
+- [ ] Examples work correctly
+- [ ] Documentation is complete
 
-## Comandos útiles
+## Useful commands
 
 ```bash
-# Ver qué archivos se incluirán en el paquete
+# See which files will be included in the package
 npm pack --dry-run
 
-# Probar el paquete localmente antes de publicar
+# Test the package locally before publishing
 npm pack
-npm install ./notibuzz-noti-sdk-js-1.0.0.tgz
+npm install ./notibuzz-noti-sdk-js-1.0.1.tgz
 
-# Despublicar (solo dentro de 72 horas)
-npm unpublish @notibuzz/noti-sdk-js@1.0.0
+# Unpublish (only within 72 hours)
+npm unpublish @notibuzz/noti-sdk-js@1.0.1
 ```
 
-## Notas importantes
+## Important notes
 
-- ⚠️ **No publiques versiones con errores**: Una vez publicada, no puedes eliminar una versión después de 72 horas
-- ⚠️ **Usa versiones semánticas**: Sigue [Semantic Versioning](https://semver.org/)
-- ⚠️ **Actualiza CHANGELOG**: Mantén un registro de cambios
-- ⚠️ **Prueba antes de publicar**: Siempre prueba el paquete localmente
-
+- ⚠️ **Don't publish versions with errors**: Once published, you cannot delete a version after 72 hours
+- ⚠️ **Use semantic versions**: Follow [Semantic Versioning](https://semver.org/)
+- ⚠️ **Update CHANGELOG**: Keep a record of changes
+- ⚠️ **Test before publishing**: Always test the package locally

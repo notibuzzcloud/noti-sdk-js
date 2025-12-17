@@ -9,23 +9,23 @@ async function main() {
   try {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     
-    console.log('📷 Actualizando foto de perfil...')
+    console.log('📷 Updating profile picture...')
     
-    // Opción 1: Desde URL
+    // Option 1: From URL
     const result = await setProfilePicture({ 
       pathParams: { session: sessionName },
       body: {
         file: {
           mimetype: 'image/jpeg',
           filename: 'avatar.jpg',
-          url: 'https://picsum.photos/200/200' // Cambia por tu URL
+          url: 'https://picsum.photos/200/200' // Change to your URL
         }
       }
     })
     
-    console.log('✅ Foto de perfil actualizada:', result)
+    console.log('✅ Profile picture updated:', result)
     
-    // Opción 2: Desde base64 (descomenta para usar)
+    // Option 2: From base64 (uncomment to use)
     /*
     const result2 = await setProfilePicture({ 
       pathParams: { session: sessionName },

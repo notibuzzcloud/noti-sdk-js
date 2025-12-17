@@ -10,7 +10,7 @@ async function main() {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     const chatId = '51111111111@c.us'
     
-    console.log('📝 Creando/actualizando contacto...')
+    console.log('📝 Creating/updating contact...')
     
     const result = await contactsUpsert({
       pathParams: {
@@ -23,7 +23,7 @@ async function main() {
       }
     })
     
-    console.log('✅ Contacto creado/actualizado:', result)
+    console.log('✅ Contact created/updated:', result)
   } catch (error) {
     console.error('❌ Error:', error.message)
   }

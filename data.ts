@@ -9,17 +9,17 @@ export const apiCategories: ApiCategory[] = [
         id: 'list-sessions',
         method: 'GET',
         path: '/api/sessions',
-        title: 'Listar sesiones',
-        description: 'Lista todas las sesiones; usa ?all=true para incluir STOPPED.',
+        title: 'List sessions',
+        description: 'List all sessions; use ?all=true to include STOPPED.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         query: [
           {
             name: 'all',
             type: 'boolean',
             required: false,
-            description: 'Incluye sesiones en estado STOPPED',
+            description: 'Include sessions in STOPPED state',
             example: 'true'
           }
         ],
@@ -39,13 +39,13 @@ export const apiCategories: ApiCategory[] = [
         id: 'get-session',
         method: 'GET',
         path: '/api/sessions/{session}',
-        title: 'Información de la sesión',
-        description: 'Obtén información detallada de una sesión por nombre.',
+        title: 'Session information',
+        description: 'Get detailed information about a session by name.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' }
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' }
         ],
         request: `curl -X GET \\
 '{{BASE_URL}}/api/sessions/default' \\
@@ -61,13 +61,13 @@ export const apiCategories: ApiCategory[] = [
         id: 'get-session-me',
         method: 'GET',
         path: '/api/sessions/{session}/me',
-        title: 'Cuenta autenticada',
-        description: 'Información de la cuenta autenticada de la sesión.',
+        title: 'Authenticated account',
+        description: 'Information about the authenticated account of the session.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' }
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' }
         ],
         request: `curl -X GET \\
 '{{BASE_URL}}/api/sessions/default/me' \\
@@ -89,12 +89,12 @@ export const apiCategories: ApiCategory[] = [
         method: 'GET',
         path: '/api/{session}/profile',
         title: 'Get my profile',
-        description: 'Obtén la información del perfil de la cuenta.',
+        description: 'Get the account profile information.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' }
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' }
         ],
         request: `curl -X GET \
 '{{BASE_URL}}/api/default/profile' \
@@ -110,12 +110,12 @@ export const apiCategories: ApiCategory[] = [
         method: 'PUT',
         path: '/api/{session}/profile/name',
         title: 'Set my profile name',
-        description: 'Actualiza el nombre del perfil.',
+        description: 'Update the profile name.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' }
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' }
         ],
         bodyExample: `{
   "name": "My New Name"
@@ -136,12 +136,12 @@ export const apiCategories: ApiCategory[] = [
         method: 'PUT',
         path: '/api/{session}/profile/status',
         title: 'Set profile status (About)',
-        description: 'Actualiza el estado (About) del perfil.',
+        description: 'Update the profile status (About).',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' }
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' }
         ],
         bodyExample: `{
   "status": "🎉 Hey there! I am using WhatsApp 🎉"
@@ -162,12 +162,12 @@ export const apiCategories: ApiCategory[] = [
         method: 'PUT',
         path: '/api/{session}/profile/picture',
         title: 'Set profile picture',
-        description: 'Actualiza la foto de perfil; acepta archivo remoto o binario.',
+        description: 'Update the profile picture; accepts remote file or binary.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' }
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' }
         ],
         bodyExample: `{
   "file": {
@@ -196,12 +196,12 @@ export const apiCategories: ApiCategory[] = [
         method: 'DELETE',
         path: '/api/{session}/profile/picture',
         title: 'Delete profile picture',
-        description: 'Elimina la foto de perfil.',
+        description: 'Delete the profile picture.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' }
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' }
         ],
         request: `curl -X DELETE \
 '{{BASE_URL}}/api/default/profile/picture' \
@@ -220,10 +220,10 @@ export const apiCategories: ApiCategory[] = [
         id: 'send-text',
         method: 'POST',
         path: '/api/sendText',
-        title: 'Enviar texto',
-        description: 'Envía un mensaje de texto.',
+        title: 'Send text',
+        description: 'Send a text message.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         bodyExample: `{
   "session": "default",
@@ -268,10 +268,10 @@ export const apiCategories: ApiCategory[] = [
         id: 'send-link-custom-preview',
         method: 'POST',
         path: '/api/send/link-custom-preview',
-        title: 'Enviar texto con vista previa personalizada',
-        description: 'Envía texto con vista previa (título, descripción, imagen).',
+        title: 'Send text with custom preview',
+        description: 'Send text with preview (title, description, image).',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         bodyExample: `{
   "chatId": "51949203333@c.us",
@@ -360,10 +360,10 @@ export const apiCategories: ApiCategory[] = [
         id: 'send-image',
         method: 'POST',
         path: '/api/sendImage',
-        title: 'Enviar imagen',
-        description: 'Envía una imagen desde URL o base64.',
+        title: 'Send image',
+        description: 'Send an image from URL or base64.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         bodyExample: `{
   "session": "default",
@@ -443,10 +443,10 @@ export const apiCategories: ApiCategory[] = [
         id: 'send-file',
         method: 'POST',
         path: '/api/sendFile',
-        title: 'Enviar archivo',
-        description: 'Envía un archivo desde URL o base64.',
+        title: 'Send file',
+        description: 'Send a file from URL or base64.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         bodyExample: `{
   "chatId": "51949203333@c.us",
@@ -522,10 +522,10 @@ export const apiCategories: ApiCategory[] = [
         id: 'send-voice',
         method: 'POST',
         path: '/api/sendVoice',
-        title: 'Enviar nota de voz',
-        description: 'Envía una nota de voz por URL o BASE64. Campos: file.url o file.data; establece el mimetype como "audio/ogg; codecs=opus". WhatsApp acepta solo OPUS en contenedor OGG. Si no tienes el formato correcto, usa "convert": true para que el sistema lo convierta.',
+        title: 'Send voice note',
+        description: 'Send a voice note via URL or BASE64. Fields: file.url or file.data; set mimetype as "audio/ogg; codecs=opus". WhatsApp only accepts OPUS in OGG container. If you don\'t have the correct format, use "convert": true to let the system convert it.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         bodyExample: `URL:
 {
@@ -625,10 +625,10 @@ curl -X POST \
         id: 'send-video',
         method: 'POST',
         path: '/api/sendVideo',
-        title: 'Enviar video',
-        description: 'Usa URL o BASE64 para enviar video. Campos: file.url o file.data; puedes añadir "caption" y "asNote" (video redondo). WhatsApp acepta solo MP4 con códec H.264 (libx264). Si no tienes el formato correcto, usa "convert": true.',
+        title: 'Send video',
+        description: 'Use URL or BASE64 to send video. Fields: file.url or file.data; you can add "caption" and "asNote" (round video). WhatsApp only accepts MP4 with H.264 codec (libx264). If you don\'t have the correct format, use "convert": true.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         bodyExample: `URL:
 {
@@ -743,10 +743,10 @@ curl -X POST \
         id: 'reaction',
         method: 'PUT',
         path: '/api/reaction',
-        title: 'Reaccionar a mensaje',
-        description: 'Agrega o elimina una reacción en un mensaje.',
+        title: 'React to message',
+        description: 'Add or remove a reaction on a message.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         bodyExample: `{
   "session": "elDieguis",
@@ -797,10 +797,10 @@ curl -X POST \
         id: 'mark-read',
         method: 'POST',
         path: '/api/sendSeen',
-        title: 'Marcar como leído',
-        description: 'Marca mensajes como leídos en un chat. Si no envías IDs, lee los últimos 7 días y devuelve los IDs.',
+        title: 'Mark as read',
+        description: 'Mark messages as read in a chat. If you don\'t send IDs, it reads the last 7 days and returns the IDs.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         bodyExample: `{
   "chatId": "51953508109@c.us",
@@ -830,10 +830,10 @@ curl -X POST \
         id: 'send-poll',
         method: 'POST',
         path: '/api/sendPoll',
-        title: 'Enviar encuesta',
-        description: 'Envía una encuesta con opciones.',
+        title: 'Send poll',
+        description: 'Send a poll with options.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         bodyExample: `{
   "session": "elDieguis",
@@ -917,10 +917,10 @@ curl -X POST \
         id: 'send-location',
         method: 'POST',
         path: '/api/sendLocation',
-        title: 'Enviar ubicación',
-        description: 'Envía una ubicación con latitud, longitud y título.',
+        title: 'Send location',
+        description: 'Send a location with latitude, longitude and title.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         bodyExample: `{
 	"chatId": "11111111111@c.us",
@@ -973,10 +973,10 @@ curl -X POST \
         id: 'send-contact-vcard',
         method: 'POST',
         path: '/api/sendContactVcard',
-        title: 'Enviar contacto (vCard)',
-        description: 'Envía uno o más contactos en formato vCard o datos de contacto.',
+        title: 'Send contact (vCard)',
+        description: 'Send one or more contacts in vCard format or contact data.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         bodyExample: `{
   "chatId": "11111111111@c.us",
@@ -1045,10 +1045,10 @@ curl -X POST \
         id: 'forward-message',
         method: 'POST',
         path: '/api/forwardMessage',
-        title: 'Reenviar mensaje',
-        description: 'Reenvía un mensaje existente a otro chat.',
+        title: 'Forward message',
+        description: 'Forward an existing message to another chat.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         bodyExample: `{
 	"session": "elDieguis",
@@ -1110,10 +1110,10 @@ curl -X POST \
         id: 'start-typing',
         method: 'POST',
         path: '/api/startTyping',
-        title: 'Empezar a escribir',
-        description: 'Inicia estado de escritura en un chat.',
+        title: 'Start typing',
+        description: 'Start typing status in a chat.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         bodyExample: `{
   "session": "elDieguis",
@@ -1135,10 +1135,10 @@ curl -X POST \
         id: 'stop-typing',
         method: 'POST',
         path: '/api/stopTyping',
-        title: 'Detener escritura',
-        description: 'Detiene el estado de escritura en un chat.',
+        title: 'Stop typing',
+        description: 'Stop typing status in a chat.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         bodyExample: `{
   "session": "elDieguis",
@@ -1166,13 +1166,13 @@ curl -X POST \
         id: 'status-text',
         method: 'POST',
         path: '/api/{session}/status/text',
-        title: 'Enviar estado de texto',
-        description: 'Publica un estado de texto; puede incluir vista previa de enlaces.',
+        title: 'Send text status',
+        description: 'Publish a text status; can include link preview.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' }
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' }
         ],
         bodyExample: `{
   "contacts": [
@@ -1237,13 +1237,13 @@ curl -X POST \
         id: 'status-image',
         method: 'POST',
         path: '/api/{session}/status/image',
-        title: 'Enviar estado de imagen',
-        description: 'Publica un estado de imagen (URL o Base64).',
+        title: 'Send image status',
+        description: 'Publish an image status (URL or Base64).',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' }
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' }
         ],
         bodyExample: `URL:
 {
@@ -1353,13 +1353,13 @@ curl -X POST \
         id: 'status-voice',
         method: 'POST',
         path: '/api/{session}/status/voice',
-        title: 'Enviar estado de voz',
-        description: 'Publica un estado de voz vía URL o Base64. El archivo debe estar en OGG (OPUS). Usa "convert": true si tu audio no cumple el formato.',
+        title: 'Send voice status',
+        description: 'Publish a voice status via URL or Base64. The file must be in OGG (OPUS) format. Use "convert": true if your audio doesn\'t meet the format.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' }
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' }
         ],
         bodyExample: `URL:
 {
@@ -1463,13 +1463,13 @@ curl -X POST \
         id: 'status-video',
         method: 'POST',
         path: '/api/{session}/status/video',
-        title: 'Enviar estado de video',
-        description: 'Publica un estado de video vía URL o Base64. El video debe ser MP4 con códec H.264 (libx264). Usa "convert": true si tu video no cumple el formato.',
+        title: 'Send video status',
+        description: 'Publish a video status via URL or Base64. The video must be MP4 with H.264 codec (libx264). Use "convert": true if your video doesn\'t meet the format.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' }
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' }
         ],
         bodyExample: `URL:
 {
@@ -1578,13 +1578,13 @@ curl -X POST \
         id: 'status-delete',
         method: 'POST',
         path: '/api/{session}/status/delete',
-        title: 'Eliminar estado enviado',
-        description: 'Elimina un estado previamente enviado por su ID. Puedes limitarlo a una lista de contactos.',
+        title: 'Delete sent status',
+        description: 'Delete a previously sent status by its ID. You can limit it to a list of contacts.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' }
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' }
         ],
         bodyExample: `{
 	"id": "3EB0B4B74FB349EEC971A6",
@@ -1643,18 +1643,18 @@ curl -X POST \
         id: 'chats-overview-get',
         method: 'GET',
         path: '/api/{session}/chats/overview',
-        title: 'Listado de chats (overview)',
-        description: 'Obtén el resumen de chats (id, nombre, foto, último mensaje). Ordenado por timestamp del último mensaje.',
+        title: 'Chat list (overview)',
+        description: 'Get chat overview (id, name, photo, last message). Sorted by last message timestamp.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' }
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' }
         ],
         query: [
-          { name: 'limit', type: 'number', required: false, description: 'Cantidad de resultados (por defecto 20)', example: '20' },
+          { name: 'limit', type: 'number', required: false, description: 'Number of results (default 20)', example: '20' },
           { name: 'offset', type: 'number', required: false, description: 'Desplazamiento para paginación', example: '0' },
-          { name: 'ids', type: 'string[]', required: false, description: 'Filtra por IDs de chat; repetir el parámetro para múltiples valores', example: '111111111@c.us' }
+          { name: 'ids', type: 'string[]', required: false, description: 'Filter by chat IDs; repeat the parameter for multiple values', example: '111111111@c.us' }
         ],
         request: `Contacts:
 
@@ -1715,16 +1715,16 @@ curl -X GET \
         method: 'GET',
         path: '/api/{session}/chats/{chatId}/picture',
         title: 'Foto del chat',
-        description: 'Obtiene la foto de perfil del chat. Usa refresh=true si necesitas forzar actualización (caché ~24h).',
+        description: 'Get the chat profile picture. Use refresh=true if you need to force update (cache ~24h).',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' },
-          { name: 'chatId', type: 'string', required: true, description: 'ID del chat', example: '111111111@c.us' }
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' },
+          { name: 'chatId', type: 'string', required: true, description: 'Chat ID', example: '111111111@c.us' }
         ],
         query: [
-          { name: 'refresh', type: 'boolean', required: false, description: 'Forzar refresco desde servidor', example: 'false' }
+          { name: 'refresh', type: 'boolean', required: false, description: 'Force refresh from server', example: 'false' }
         ],
         request: `curl -X GET \
 '{{BASE_URL}}/api/default/chats/111111111@c.us/picture?refresh=false' \
@@ -1738,18 +1738,18 @@ curl -X GET \
         method: 'GET',
         path: '/api/{session}/chats/{chatId}/messages',
         title: 'Mensajes del chat',
-        description: 'Lista los mensajes del chat con filtros y paginación. Soporta descarga de media.',
+        description: 'List chat messages with filters and pagination. Supports media download.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' },
-          { name: 'chatId', type: 'string', required: true, description: 'ID del chat', example: '111111111@c.us' }
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' },
+          { name: 'chatId', type: 'string', required: true, description: 'Chat ID', example: '111111111@c.us' }
         ],
         query: [
-          { name: 'limit', type: 'number', required: false, description: 'Cantidad de resultados (por defecto 10)', example: '20' },
+          { name: 'limit', type: 'number', required: false, description: 'Number of results (default 10)', example: '20' },
           { name: 'offset', type: 'number', required: false, description: 'Desplazamiento para paginación', example: '0' },
-          { name: 'downloadMedia', type: 'boolean', required: false, description: 'Descargar media asociado a los mensajes', example: 'true' }
+          { name: 'downloadMedia', type: 'boolean', required: false, description: 'Download media associated with messages', example: 'true' }
         ],
         request: `curl -X GET \
 '{{BASE_URL}}/api/default/chats/111111111@c.us/messages?limit=20&offset=0&downloadMedia=true' \
@@ -1816,17 +1816,17 @@ curl -X GET \
         method: 'POST',
         path: '/api/{session}/chats/{chatId}/messages/read',
         title: 'Marcar mensajes como leídos',
-        description: 'Marca mensajes como leídos (últimos primero). Puedes limitar por cantidad o días).',
+        description: 'Mark messages as read (latest first). You can limit by quantity or days.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' },
-          { name: 'chatId', type: 'string', required: true, description: 'ID del chat', example: '111111111@c.us' }
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' },
+          { name: 'chatId', type: 'string', required: true, description: 'Chat ID', example: '111111111@c.us' }
         ],
         query: [
-          { name: 'messages', type: 'number', required: false, description: 'Cantidad de mensajes a marcar como leídos', example: '30' },
-          { name: 'days', type: 'number', required: false, description: 'Cantidad de días hacia atrás (por defecto 7)', example: '7' }
+          { name: 'messages', type: 'number', required: false, description: 'Number of messages to mark as read', example: '30' },
+          { name: 'days', type: 'number', required: false, description: 'Number of days back (default 7)', example: '7' }
         ],
         request: `curl -X POST \
 '{{BASE_URL}}/api/default/chats/111111111@c.us/messages/read?messages=30&days=7' \
@@ -1839,14 +1839,14 @@ curl -X GET \
         id: 'chats-get-message',
         method: 'GET',
         path: '/api/{session}/chats/{chatId}/messages/{messageId}',
-        title: 'Obtener mensaje por ID',
-        description: 'Obtiene un mensaje específico por su ID. Puede descargar media asociada.',
+        title: 'Get message by ID',
+        description: 'Get a specific message by its ID. Can download associated media.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' },
-          { name: 'chatId', type: 'string', required: true, description: 'ID del chat', example: '111111111@c.us' },
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' },
+          { name: 'chatId', type: 'string', required: true, description: 'Chat ID', example: '111111111@c.us' },
           { name: 'messageId', type: 'string', required: true, description: 'ID del mensaje', example: 'false_111111111@c.us_AAAAAAAAAAAAAAAAAAAA' }
         ],
         query: [
@@ -1887,14 +1887,14 @@ curl -X GET \
         id: 'chats-delete-message',
         method: 'DELETE',
         path: '/api/{session}/chats/{chatId}/messages/{messageId}',
-        title: 'Eliminar mensaje del chat',
-        description: 'Elimina un mensaje específico del chat por su ID.',
+        title: 'Delete message from chat',
+        description: 'Delete a specific message from the chat by its ID.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' },
-          { name: 'chatId', type: 'string', required: true, description: 'ID del chat', example: '111111111@c.us' },
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' },
+          { name: 'chatId', type: 'string', required: true, description: 'Chat ID', example: '111111111@c.us' },
           { name: 'messageId', type: 'string', required: true, description: 'ID del mensaje', example: 'false_111111111@c.us_AAAAAAAAAAAAAAAAAAAA' }
         ],
         request: `curl -X DELETE \
@@ -1934,14 +1934,14 @@ curl -X GET \
         id: 'chats-edit-message',
         method: 'PUT',
         path: '/api/{session}/chats/{chatId}/messages/{messageId}',
-        title: 'Editar mensaje del chat',
-        description: 'Edita el contenido de un mensaje existente. Puedes incluir vista previa de enlaces.',
+        title: 'Edit chat message',
+        description: 'Edit the content of an existing message. You can include link preview.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' },
-          { name: 'chatId', type: 'string', required: true, description: 'ID del chat', example: '111111111@c.us' },
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' },
+          { name: 'chatId', type: 'string', required: true, description: 'Chat ID', example: '111111111@c.us' },
           { name: 'messageId', type: 'string', required: true, description: 'ID del mensaje', example: 'false_111111111@c.us_AAAAAAAAAAAAAAAAAAAA' }
         ],
         bodyExample: `{
@@ -1998,18 +1998,18 @@ curl -X GET \
         id: 'chats-pin-message',
         method: 'POST',
         path: '/api/{session}/chats/{chatId}/messages/{messageId}/pin',
-        title: 'Pinear mensaje del chat',
+        title: 'Pin chat message',
         description: `Pinea un mensaje dentro del chat por una duración específica. \t
         - 24 hours - duration=86400
         - 7 days - duration=604800
         - 30 days - duration=2592000
         `,
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' },
-          { name: 'chatId', type: 'string', required: true, description: 'ID del chat', example: '111111111@c.us' },
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' },
+          { name: 'chatId', type: 'string', required: true, description: 'Chat ID', example: '111111111@c.us' },
           { name: 'messageId', type: 'string', required: true, description: 'ID del mensaje', example: 'false_111111111@c.us_AAAAAAAAAAAAAAAAAAAA' }
         ],
         bodyExample: `{
@@ -2030,14 +2030,14 @@ curl -X GET \
         id: 'chats-unpin-message',
         method: 'POST',
         path: '/api/{session}/chats/{chatId}/messages/{messageId}/unpin',
-        title: 'Despinear mensaje del chat',
-        description: 'Quita el pin de un mensaje dentro del chat.',
+        title: 'Unpin chat message',
+        description: 'Remove the pin from a message within the chat.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' },
-          { name: 'chatId', type: 'string', required: true, description: 'ID del chat', example: '111111111@c.us' },
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' },
+          { name: 'chatId', type: 'string', required: true, description: 'Chat ID', example: '111111111@c.us' },
           { name: 'messageId', type: 'string', required: true, description: 'ID del mensaje', example: 'false_111111111@c.us_AAAAAAAAAAAAAAAAAAAA' }
         ],
         request: `curl -X POST \
@@ -2057,13 +2057,13 @@ curl -X GET \
         id: 'contacts-get-basic',
         method: 'GET',
         path: '/api/contacts',
-        title: 'Obtener info básica del contacto',
-        description: 'Devuelve datos básicos del contacto. Usa /contacts/check-exists para verificar si el número está registrado.',
+        title: 'Get basic contact information',
+        description: 'Returns basic contact data. Use /contacts/check-exists to verify if the number is registered.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         query: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' },
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' },
           { name: 'contactId', type: 'string', required: true, description: 'ID del contacto (JID)', example: '51949203300@c.us' }
         ],
         request: `curl -X GET \
@@ -2083,10 +2083,10 @@ curl -X GET \
         title: 'Verificar si número existe en WhatsApp',
         description: 'Verifica si el número está registrado en WhatsApp.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         query: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' },
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' },
           { name: 'phone', type: 'string', required: true, description: 'Número telefónico sin "+" ni sufijo', example: '51949203300' }
         ],
         request: `curl -X GET \
@@ -2101,13 +2101,13 @@ curl -X GET \
         id: 'contacts-profile-picture',
         method: 'GET',
         path: '/api/contacts/profile-picture',
-        title: 'Obtener URL de foto de perfil',
-        description: 'Devuelve la URL de la foto de perfil. Puede retornar null por privacidad. Usa refresh para forzar actualización.',
+        title: 'Get profile picture URL',
+        description: 'Returns the profile picture URL. May return null for privacy. Use refresh to force update.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         query: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' },
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' },
           { name: 'contactId', type: 'string', required: true, description: 'ID del contacto (JID)', example: '51949203300@c.us' },
           { name: 'refresh', type: 'boolean', required: false, description: 'Forzar refresco (cache 24h por defecto)', example: 'false' }
         ],
@@ -2122,13 +2122,13 @@ curl -X GET \
         id: 'contacts-upsert',
         method: 'PUT',
         path: '/api/{session}/contacts/{chatId}',
-        title: 'Crear o actualizar contacto',
+        title: 'Create or update contact',
         description: 'Crea o actualiza el contacto en la libreta del dispositivo.',
         headers: [
-          { name: 'X-Api-Key', required: true, description: 'API key para autenticar', example: '<api_key>' }
+          { name: 'X-Api-Key', required: true, description: 'API key for authentication', example: '<api_key>' }
         ],
         pathParams: [
-          { name: 'session', type: 'string', required: true, description: 'Nombre de la sesión', example: 'default' },
+          { name: 'session', type: 'string', required: true, description: 'Session name', example: 'default' },
           { name: 'chatId', type: 'string', required: true, description: 'ID del contacto (JID)', example: '51949203300@c.us' }
         ],
         bodyExample: `{

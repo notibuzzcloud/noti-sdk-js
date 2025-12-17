@@ -9,16 +9,16 @@ async function main() {
   try {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
     
-    console.log('📷 Creando estado de imagen...')
+    console.log('📷 Creating image status...')
     
-    // Opción 1: Desde URL
-    // Nota: id debe ser null, contacts se filtra automáticamente (duplicados y mal formados se omiten)
+    // Option 1: From URL
+    // Note: id must be null, contacts are automatically filtered (duplicates and malformed are omitted)
     const result = await statusImage({
       pathParams: { session: sessionName },
       body: {
-        id: null, // Requerido: debe ser null
-        contacts: ["51111111111@c.us", "51111111111@c.us", "51941404551@c.us", "51111111111@c.us"], // Duplicados se filtran automáticamente
-        caption: 'Mi nuevo estado con imagen 📸',
+        id: null, // Required: must be null
+        contacts: ["51111111111@c.us", "51111111111@c.us", "51941404551@c.us", "51111111111@c.us"], // Duplicates are automatically filtered
+        caption: 'My new status with image 📸',
         file: {
           mimetype: 'image/jpeg',
           filename: 'status.jpg',
@@ -27,23 +27,23 @@ async function main() {
       }
     })
     
-    console.log('✅ Estado de imagen creado (URL):', result)
+    console.log('✅ Image status created (URL):', result)
     
-    // Opción 2: Desde base64
+    // Option 2: From base64
     const result2 = await statusImage({
       pathParams: { session: sessionName },
       body: {
-        id: null, // Requerido: debe ser null
-        contacts: ["51111111111@c.us"], // Duplicados y mal formados se filtran automáticamente
-        caption: 'Estado desde base64',
+        id: null, // Required: must be null
+        contacts: ["51111111111@c.us"], // Duplicates and malformed are automatically filtered
+        caption: 'Status from base64',
         file: {
           mimetype: 'image/jpeg',
-          data: '/9j/4AAQSkZJRgABAgAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=' // Ejemplo de base64
+          data: '/9j/4AAQSkZJRgABAgAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=' // Base64 example
         }
       }
     })
     
-    console.log('✅ Estado de imagen creado (base64):', result2)
+    console.log('✅ Image status created (base64):', result2)
   } catch (error) {
     console.error('❌ Error:', error.message)
   }

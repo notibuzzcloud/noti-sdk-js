@@ -9,14 +9,14 @@ async function main() {
   try {
     const sessionName = process.env.NOTI_SESSION_NAME || 'default'
 
-    console.log('📝 Creando estado de texto...')
+    console.log('📝 Creating text status...')
 
     const result = await statusText({
       pathParams: { session: sessionName },
       body: {
-        id: null, // Requerido: debe ser null
-        contacts: ["51111111111@c.us", "51111111111@c.us"], // Duplicados y mal formados se filtran automáticamente
-        text: '¡Mira mi nuevo estado! 🎉',
+        id: null, // Required: must be null
+        contacts: ["51111111111@c.us", "51111111111@c.us"], // Duplicates and malformed are automatically filtered
+        text: 'Check out my new status! 🎉',
         backgroundColor: '#38b42f',
         font: 0,
         linkPreview: true,
@@ -24,15 +24,15 @@ async function main() {
       }
     })
 
-    console.log('✅ Estado de texto creado:', result)
+    console.log('✅ Text status created:', result)
 
-    // Para enviar a contactos específicos:
+    // To send to specific contacts:
     /*
     const result2 = await statusText({
       pathParams: { session: sessionName },
       body: {
         contacts: ['51987654321@c.us', '51987654322@c.us'],
-        text: 'Estado solo para algunos contactos',
+        text: 'Status only for some contacts',
         backgroundColor: '#38b42f',
         font: 0
       }
@@ -44,10 +44,10 @@ async function main() {
 }
 
 main().then((result) => {
-  console.log('✅ Estado de texto creado:', result)
+  console.log('✅ Text status created:', result)
 }).catch((error) => {
   console.error('❌ Error:', error)
 }).finally(() => {
-  console.log('Finalizado')
+  console.log('Finished')
 })
 

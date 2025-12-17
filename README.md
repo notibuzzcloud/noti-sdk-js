@@ -1,54 +1,56 @@
 # @notibuzz/noti-sdk-js
 
 [![npm version](https://img.shields.io/npm/v/@notibuzz/noti-sdk-js.svg)](https://www.npmjs.com/package/@notibuzz/noti-sdk-js)
+[![npm downloads](https://img.shields.io/npm/dm/@notibuzz/noti-sdk-js.svg)](https://www.npmjs.com/package/@notibuzz/noti-sdk-js)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
 
-SDK ESM TypeScript/JavaScript para consumir la API de **Noti Sender Bridge**. Este SDK proporciona wrappers tipados para interactuar con WhatsApp a través de la API de Noti Sender, incluyendo soporte para envíos masivos, cola asíncrona y control de campañas.
+**@notibuzz/noti-sdk-js** is a lightweight JavaScript and TypeScript SDK that provides seamless access to the Notibuzz Cloud REST API. It allows developers to send, manage, and automate WhatsApp messages, including high-volume bulk messaging, using a clean and modern API. Designed for scalability, reliability, and ease of use in Node.js and modern web applications.
 
-## Características
+## Features
 
-- ✅ **TypeScript completo** - Tipado fuerte y autocompletado
-- ✅ **Envíos masivos** - Soporte para campañas con control anti-ban
-- ✅ **Cola asíncrona** - Envío de mensajes en segundo plano
-- ✅ **Todos los endpoints** - Sessions, Profile, Chatting, Status, Chats, Contacts
-- ✅ **Control de campañas** - Detener, reanudar y verificar disponibilidad
-- ✅ **ESM nativo** - Compatible con módulos modernos
+- ✅ **Full TypeScript** - Strong typing and autocompletion
+- ✅ **Bulk messaging** - Support for campaigns with anti-ban control
+- ✅ **Async queue** - Background message sending
+- ✅ **All endpoints** - Sessions, Profile, Chatting, Status, Chats, Contacts
+- ✅ **Campaign control** - Stop, resume and check availability
+- ✅ **Native ESM** - Compatible with modern modules
 
-## Instalación
+## Installation
 
 ```bash
 npm install @notibuzz/noti-sdk-js
 ```
 
-## Configuración rápida
+## Quick Setup
 
-### Opción 1: Variables de entorno
+### Option 1: Environment Variables
 
 ```bash
-export NOTI_URL="'your_base_url'"
+export NOTI_URL="your_base_url"
 export NOTI_KEY="your_api_key_here"
 ```
 
-### Opción 2: Configuración en código
+### Option 2: Code Configuration
 
-**Sintaxis recomendada (objeto):**
+**Recommended syntax (object):**
 ```typescript
 import { configureClient } from '@notibuzz/noti-sdk-js'
 
 configureClient({
-  notiUrl: ''your_base_url'',
+  notiUrl: 'your_base_url',
   notiApiKey: 'your_api_key'
 })
 ```
 
-**Sintaxis tradicional (también soportada):**
+**Traditional syntax (also supported):**
 ```typescript
-configureClient(''your_base_url'', 'your_api_key')
+configureClient('your_base_url', 'your_api_key')
 ```
 
-## Uso básico
+## Basic Usage
 
-### Enviar un mensaje de texto
+### Send a text message
 
 ```typescript
 import { configureClient, sendMessage } from '@notibuzz/noti-sdk-js'
@@ -64,44 +66,44 @@ const result = await sendMessage({
     payload: {
       session: 'default',
       chatId: '51987654321@c.us',
-      text: '¡Hola desde el SDK!'
+      text: 'Hello from the SDK!'
     }
   }
 })
 
-console.log('Mensaje enviado:', result)
+console.log('Message sent:', result)
 ```
 
-### Listar sesiones
+### List sessions
 
 ```typescript
 import { listSessions } from '@notibuzz/noti-sdk-js'
 
 const sessions = await listSessions({
-  query: { all: true } // Incluye sesiones STOPPED
+  query: { all: true } // Include STOPPED sessions
 })
 
-console.log('Sesiones disponibles:', sessions)
+console.log('Available sessions:', sessions)
 ```
 
-## Envíos masivos
+## Bulk Messaging
 
-El SDK soporta envíos masivos con control de intervalos y anti-ban:
+The SDK supports bulk messaging with interval control and anti-ban features:
 
 ```typescript
 import { sendMessage } from '@notibuzz/noti-sdk-js'
 
-// Envío masivo con múltiples mensajes
+// Bulk sending with multiple messages
 const result = await sendMessage({
   body: {
-    intervalMs: 20000, // 20 segundos entre mensajes
+    intervalMs: 20000, // 20 seconds between messages
     messages: [
       {
         type: 'text',
         payload: {
           session: 'default',
           chatId: '51987654321@c.us',
-          text: 'Mensaje 1'
+          text: 'Message 1'
         }
       },
       {
@@ -109,7 +111,7 @@ const result = await sendMessage({
         payload: {
           session: 'default',
           chatId: '51987654322@c.us',
-          text: 'Mensaje 2'
+          text: 'Message 2'
         }
       },
       {
@@ -119,10 +121,10 @@ const result = await sendMessage({
           chatId: '51987654323@c.us',
           file: {
             mimetype: 'image/jpeg',
-            filename: 'foto.jpg',
+            filename: 'photo.jpg',
             url: 'https://example.com/image.jpg'
           },
-          caption: 'Mira esta imagen'
+          caption: 'Check out this image'
         }
       }
     ],
@@ -134,49 +136,49 @@ const result = await sendMessage({
   }
 })
 
-console.log('Campaña encolada:', result)
+console.log('Campaign enqueued:', result)
 // { enqueued: true, jobId: 'send-bulk-...', count: 3, intervalMs: 20000 }
 ```
 
-### Envío individual usando sendMessage
+### Individual sending using sendMessage
 
 ```typescript
 import { sendMessage } from '@notibuzz/noti-sdk-js'
 
-// También puedes enviar un mensaje individual
+// You can also send a single message
 const result = await sendMessage({
   body: {
     type: 'text',
     payload: {
       session: 'default',
       chatId: '51987654321@c.us',
-      text: 'Mensaje único'
+      text: 'Single message'
     }
   }
 })
 ```
 
-## Envíos asíncronos
+## Async Sending
 
-Puedes enviar mensajes de forma asíncrona (encolados) usando el parámetro `async`:
+You can send messages asynchronously (enqueued) using the `async` parameter:
 
 ```typescript
 import { sendMessage } from '@notibuzz/noti-sdk-js'
 
-// El mensaje se encolará y procesará en segundo plano
+// The message will be enqueued and processed in the background
 await sendMessage({
   body: {
     type: 'text',
     payload: {
       session: 'default',
       chatId: '51987654321@c.us',
-      text: 'Mensaje asíncrono'
+      text: 'Async message'
     }
   },
-  async: true // Encola el mensaje
+  async: true // Enqueue the message
 })
 
-// También funciona con otros tipos de mensajes
+// Also works with other message types
 await sendMessage({
   body: {
     type: 'image',
@@ -193,9 +195,9 @@ await sendMessage({
 })
 ```
 
-## Control de campañas masivas
+## Bulk Campaign Control
 
-### Verificar disponibilidad
+### Check availability
 
 ```typescript
 import { bulkAvailability } from '@notibuzz/noti-sdk-js'
@@ -204,11 +206,11 @@ const availability = await bulkAvailability({
   query: { requester: 'my-app' }
 })
 
-console.log('Disponibilidad:', availability)
+console.log('Availability:', availability)
 // { available: true, current: 1, max: 2, origin: 'noti-sender-bridge' }
 ```
 
-### Detener una campaña
+### Stop a campaign
 
 ```typescript
 import { bulkStopCampaign } from '@notibuzz/noti-sdk-js'
@@ -216,12 +218,12 @@ import { bulkStopCampaign } from '@notibuzz/noti-sdk-js'
 await bulkStopCampaign({
   pathParams: { id: 'campaign-123' },
   body: {
-    sessions: ['default'] // Opcional: detener solo en estas sesiones
+    sessions: ['default'] // Optional: stop only in these sessions
   }
 })
 ```
 
-### Reanudar una campaña
+### Resume a campaign
 
 ```typescript
 import { bulkResumeCampaign } from '@notibuzz/noti-sdk-js'
@@ -229,27 +231,27 @@ import { bulkResumeCampaign } from '@notibuzz/noti-sdk-js'
 await bulkResumeCampaign({
   pathParams: { id: 'campaign-123' },
   body: {
-    sessions: ['default'] // Opcional: reanudar solo en estas sesiones
+    sessions: ['default'] // Optional: resume only in these sessions
   }
 })
 ```
 
-## Ejemplos por categoría
+## Examples by Category
 
 ### Sessions
 
 ```typescript
 import { listSessions, getSession, getSessionMe } from '@notibuzz/noti-sdk-js'
 
-// Listar todas las sesiones
+// List all sessions
 const sessions = await listSessions({ query: { all: true } })
 
-// Obtener información de una sesión
+// Get session information
 const session = await getSession({
   pathParams: { session: 'default' }
 })
 
-// Obtener información de la cuenta autenticada
+// Get authenticated account information
 const me = await getSessionMe({
   pathParams: { session: 'default' }
 })
@@ -260,18 +262,18 @@ const me = await getSessionMe({
 ```typescript
 import { getMyProfile, setProfileStatus, setProfilePicture } from '@notibuzz/noti-sdk-js'
 
-// Obtener perfil
+// Get profile
 const profile = await getMyProfile({
   pathParams: { session: 'default' }
 })
 
-// Actualizar estado (About)
+// Update status (About)
 await setProfileStatus({
   pathParams: { session: 'default' },
-  body: { status: '🎉 Usando Noti Sender!' }
+  body: { status: '🎉 Using Noti Sender!' }
 })
 
-// Actualizar foto de perfil
+// Update profile picture
 await setProfilePicture({
   pathParams: { session: 'default' },
   body: {
@@ -286,26 +288,26 @@ await setProfilePicture({
 
 ### Chatting
 
-**Importante**: Todos los mensajes se envían a través del endpoint genérico `sendMessage`. Los tipos soportados son: `text`, `image`, `file`, `voice`, `video`, `link-custom-preview`, `seen`, `poll`, `location`, `contact-vcard`, `forward`, `list`.
+**Important**: All messages are sent through the generic `sendMessage` endpoint. Supported types: `text`, `image`, `file`, `voice`, `video`, `link-custom-preview`, `seen`, `poll`, `location`, `contact-vcard`, `forward`, `list`.
 
-**Endpoints directos** (no pasan por sendMessage): `reaction`, `startTyping`, `stopTyping`.
+**Direct endpoints** (don't go through sendMessage): `reaction`, `startTyping`, `stopTyping`.
 
 ```typescript
 import { sendMessage, reaction, startTyping, stopTyping } from '@notibuzz/noti-sdk-js'
 
-// Enviar texto
+// Send text
 await sendMessage({
   body: {
     type: 'text',
     payload: {
       session: 'default',
       chatId: '51987654321@c.us',
-      text: 'Hola!'
+      text: 'Hello!'
     }
   }
 })
 
-// Enviar imagen
+// Send image
 await sendMessage({
   body: {
     type: 'image',
@@ -314,15 +316,15 @@ await sendMessage({
       chatId: '51987654321@c.us',
       file: {
         mimetype: 'image/jpeg',
-        filename: 'foto.jpg',
+        filename: 'photo.jpg',
         url: 'https://example.com/image.jpg'
       },
-      caption: 'Mira esto'
+      caption: 'Check this out'
     }
   }
 })
 
-// Enviar archivo
+// Send file
 await sendMessage({
   body: {
     type: 'file',
@@ -331,15 +333,15 @@ await sendMessage({
       chatId: '51987654321@c.us',
       file: {
         mimetype: 'application/pdf',
-        filename: 'documento.pdf',
+        filename: 'document.pdf',
         url: 'https://example.com/document.pdf'
       },
-      caption: 'Documento importante'
+      caption: 'Important document'
     }
   }
 })
 
-// Enviar nota de voz
+// Send voice note
 await sendMessage({
   body: {
     type: 'voice',
@@ -350,12 +352,12 @@ await sendMessage({
         mimetype: 'audio/ogg; codecs=opus',
         url: 'https://example.com/voice.opus'
       },
-      convert: false // true si necesitas conversión de formato
+      convert: false // true if you need format conversion
     }
   }
 })
 
-// Enviar video
+// Send video
 await sendMessage({
   body: {
     type: 'video',
@@ -367,14 +369,14 @@ await sendMessage({
         filename: 'video.mp4',
         url: 'https://example.com/video.mp4'
       },
-      caption: 'Mira este video',
-      asNote: false, // true para video redondo
+      caption: 'Watch this video',
+      asNote: false, // true for round video
       convert: false
     }
   }
 })
 
-// Enviar encuesta
+// Send poll
 await sendMessage({
   body: {
     type: 'poll',
@@ -382,15 +384,15 @@ await sendMessage({
       session: 'default',
       chatId: '51987654321@c.us',
       poll: {
-        name: '¿Cuál es tu color favorito?',
-        options: ['Rojo', 'Azul', 'Verde'],
+        name: 'What is your favorite color?',
+        options: ['Red', 'Blue', 'Green'],
         selectableOptionsCount: 1
       }
     }
   }
 })
 
-// Enviar ubicación
+// Send location
 await sendMessage({
   body: {
     type: 'location',
@@ -405,7 +407,7 @@ await sendMessage({
   }
 })
 
-// Enviar contacto (vCard)
+// Send contact (vCard)
 await sendMessage({
   body: {
     type: 'contact-vcard',
@@ -429,7 +431,7 @@ await sendMessage({
   }
 })
 
-// Reenviar mensaje
+// Forward message
 await sendMessage({
   body: {
     type: 'forward',
@@ -443,7 +445,42 @@ await sendMessage({
   }
 })
 
-// Indicar que estás escribiendo (endpoint directo)
+// Send list (interactive list)
+await sendMessage({
+  body: {
+    type: 'list',
+    payload: {
+      session: 'default',
+      chatId: '51987654321@c.us',
+      message: {
+        title: 'Simple Menu',
+        description: 'Please choose an option',
+        footer: 'Thank you!',
+        button: 'Choose',
+        sections: [
+          {
+            title: 'Main',
+            rows: [
+              {
+                title: 'Option 1',
+                rowId: 'option1',
+                description: 'Option 1 description'
+              },
+              {
+                title: 'Option 2',
+                rowId: 'option2',
+                description: 'Option 2 description'
+              }
+            ]
+          }
+        ]
+      },
+      reply_to: null
+    }
+  }
+})
+
+// Indicate you're typing (direct endpoint)
 await startTyping({
   body: {
     session: 'default',
@@ -451,7 +488,7 @@ await startTyping({
   }
 })
 
-// Dejar de escribir (endpoint directo)
+// Stop typing (direct endpoint)
 await stopTyping({
   body: {
     session: 'default',
@@ -459,7 +496,7 @@ await stopTyping({
   }
 })
 
-// Marcar como visto usando sendMessage con tipo 'seen'
+// Mark as seen using sendMessage with type 'seen'
 await sendMessage({
   body: {
     type: 'seen',
@@ -471,28 +508,12 @@ await sendMessage({
   }
 })
 
-// Reaccionar a un mensaje (endpoint directo, no pasa por sendMessage)
+// React to a message (direct endpoint, doesn't go through sendMessage)
 await reaction({
   body: {
     session: 'default',
     messageId: 'true_51987654321@c.us_3EB0EB3DF63D6AF1112A85',
     reaction: '👍'
-  }
-})
-
-// Indicar que estás escribiendo (endpoint directo, no pasa por sendMessage)
-await startTyping({
-  body: {
-    session: 'default',
-    chatId: '51987654321@c.us'
-  }
-})
-
-// Dejar de escribir (endpoint directo, no pasa por sendMessage)
-await stopTyping({
-  body: {
-    session: 'default',
-    chatId: '51987654321@c.us'
   }
 })
 ```
@@ -502,24 +523,24 @@ await stopTyping({
 ```typescript
 import { statusText, statusImage, statusVoice, statusVideo, statusDelete } from '@notibuzz/noti-sdk-js'
 
-// Crear Story de texto
+// Create text Story
 await statusText({
   pathParams: { session: 'default' },
   body: {
-    contacts: [], // [] para enviar a todos
-    text: 'Mira esto! https://github.com/',
+    contacts: [], // [] to send to everyone
+    text: 'Check this out! https://github.com/',
     backgroundColor: '#38b42f',
     font: 0,
     linkPreview: true
   }
 })
 
-// Crear Story de imagen
+// Create image Story
 await statusImage({
   pathParams: { session: 'default' },
   body: {
     contacts: ['51987654321@c.us'],
-    caption: 'Mi Story',
+    caption: 'My Story',
     file: {
       mimetype: 'image/jpeg',
       filename: 'status.jpg',
@@ -528,7 +549,7 @@ await statusImage({
   }
 })
 
-// Eliminar Story
+// Delete Story
 await statusDelete({
   pathParams: { session: 'default' },
   body: {
@@ -551,18 +572,18 @@ import {
   chatsUnpinMessage
 } from '@notibuzz/noti-sdk-js'
 
-// Listar chats
+// List chats
 const chats = await chatsGet({
   pathParams: { session: 'default' }
 })
 
-// Obtener resumen de chats
+// Get chat overview
 const overview = await chatsOverviewGet({
   pathParams: { session: 'default' },
   query: { limit: 20, offset: 0 }
 })
 
-// Obtener mensajes de un chat
+// Get chat messages
 const messages = await chatsGetMessages({
   pathParams: {
     session: 'default',
@@ -575,19 +596,19 @@ const messages = await chatsGetMessages({
   }
 })
 
-// Marcar mensajes como leídos
+// Mark messages as read
 await chatsReadMessages({
   pathParams: {
     session: 'default',
     chatId: '51987654321@c.us'
   },
   query: {
-    messages: 30, // Cantidad de mensajes
-    days: 7 // Días hacia atrás
+    messages: 30, // Number of messages
+    days: 7 // Days back
   }
 })
 
-// Editar mensaje
+// Edit message
 await chatsEditMessage({
   pathParams: {
     session: 'default',
@@ -595,12 +616,12 @@ await chatsEditMessage({
     messageId: 'false_51987654321@c.us_AAAAAAAAAAAAAAAAAAAA'
   },
   body: {
-    text: 'Mensaje editado',
+    text: 'Edited message',
     linkPreview: true
   }
 })
 
-// Pinear mensaje
+// Pin message
 await chatsPinMessage({
   pathParams: {
     session: 'default',
@@ -608,7 +629,7 @@ await chatsPinMessage({
     messageId: 'false_51987654321@c.us_AAAAAAAAAAAAAAAAAAAA'
   },
   body: {
-    duration: 86400 // 24 horas
+    duration: 86400 // 24 hours
   }
 })
 ```
@@ -627,12 +648,12 @@ import {
   contactsUpsert
 } from '@notibuzz/noti-sdk-js'
 
-// Listar todos los contactos
+// List all contacts
 const allContacts = await contactsGetAll({
   query: { session: 'default' }
 })
 
-// Obtener información básica
+// Get basic information
 const contact = await contactsGetBasic({
   query: {
     session: 'default',
@@ -640,7 +661,7 @@ const contact = await contactsGetBasic({
   }
 })
 
-// Verificar si un número existe en WhatsApp
+// Check if a number exists on WhatsApp
 const exists = await contactsCheckExists({
   query: {
     session: 'default',
@@ -648,7 +669,7 @@ const exists = await contactsCheckExists({
   }
 })
 
-// Obtener foto de perfil
+// Get profile picture
 const picture = await contactsProfilePicture({
   query: {
     session: 'default',
@@ -657,7 +678,7 @@ const picture = await contactsProfilePicture({
   }
 })
 
-// Bloquear contacto
+// Block contact
 await contactsBlock({
   body: {
     session: 'default',
@@ -665,20 +686,20 @@ await contactsBlock({
   }
 })
 
-// Crear o actualizar contacto
+// Create or update contact
 await contactsUpsert({
   pathParams: {
     session: 'default',
     chatId: '51987654321@c.us'
   },
   body: {
-    firstName: 'Juan',
-    lastName: 'Pérez'
+    firstName: 'John',
+    lastName: 'Doe'
   }
 })
 ```
 
-## Manejo de errores
+## Error Handling
 
 ```typescript
 import { sendMessage } from '@notibuzz/noti-sdk-js'
@@ -690,63 +711,63 @@ try {
       payload: {
         session: 'default',
         chatId: '51987654321@c.us',
-        text: 'Hola'
+        text: 'Hello'
       }
     }
   })
-  console.log('Éxito:', result)
+  console.log('Success:', result)
 } catch (error) {
   if (error instanceof Error) {
     console.error('Error:', error.message)
-    // El mensaje de error incluye el código HTTP y detalles
-    // Ejemplo: "HTTP 401 Unauthorized - { error: 'invalid X-Api-Key' }"
+    // Error message includes HTTP code and details
+    // Example: "HTTP 401 Unauthorized - { error: 'invalid X-Api-Key' }"
   }
 }
 ```
 
-## Requisitos
+## Requirements
 
 - Node.js >= 18.0.0
-- TypeScript >= 5.0 (opcional, pero recomendado)
+- TypeScript >= 5.0 (optional, but recommended)
 
 ## API Reference
 
-Todos los endpoints están documentados con tipos TypeScript. Para ver la lista completa de endpoints y sus parámetros, consulta la [documentación del Bridge](https://github.com/notibuzz/noti-sender-bridge).
+All endpoints are documented with TypeScript types. For the complete list of endpoints and their parameters, see the [Bridge documentation](https://github.com/notibuzz/noti-sender-bridge).
 
-### Endpoints principales
+### Main Endpoints
 
 - **Sessions**: `listSessions`, `getSession`, `getSessionMe`
 - **Profile**: `getMyProfile`, `setProfileName`, `setProfileStatus`, `setProfilePicture`, `deleteProfilePicture`
-- **Chatting**: `sendMessage` (endpoint genérico para todos los tipos: text, image, file, voice, video, poll, location, contact-vcard, forward, list, seen), `reaction`, `startTyping`, `stopTyping`
+- **Chatting**: `sendMessage` (generic endpoint for all types: text, image, file, voice, video, poll, location, contact-vcard, forward, list, seen), `reaction`, `startTyping`, `stopTyping`
 - **Status**: `statusText`, `statusImage`, `statusVoice`, `statusVideo`, `statusDelete`
 - **Chats**: `chatsGet`, `chatsOverviewGet`, `chatsOverviewPost`, `chatsGetMessages`, `chatsReadMessages`, `chatsGetMessage`, `chatsDeleteMessage`, `chatsEditMessage`, `chatsPinMessage`, `chatsUnpinMessage`
 - **Contacts**: `contactsGetAll`, `contactsGetBasic`, `contactsCheckExists`, `contactsProfilePicture`, `contactsGetAbout`, `contactsBlock`, `contactsUnblock`, `contactsUpsert`
 - **Bulk**: `bulkStopCampaign`, `bulkResumeCampaign`, `bulkAvailability`
 
-## Contribuir
+## Contributing
 
-Las contribuciones son bienvenidas. Por favor:
+Contributions are welcome. Please:
 
-1. Fork el repositorio
-2. Crea una rama para tu feature (`git checkout -b feature/amazing-feature`)
-3. Commit tus cambios (`git commit -m 'Add some amazing feature'`)
-4. Push a la rama (`git push origin feature/amazing-feature`)
-5. Abre un Pull Request
+1. Fork the repository
+2. Create a branch for your feature (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## Licencia
+## License
 
-MIT License - ver [LICENSE](LICENSE) para más detalles.
+MIT License - see [LICENSE](LICENSE) for more details.
 
-## Soporte
+## Support
 
 - **Issues**: [GitHub Issues](https://github.com/notibuzzcloud/noti-sdk-js/issues)
-- **Documentación**: [README](README.md)
+- **Documentation**: [README](README.md)
 
 ## Changelog
 
-### 1.0.0
-- Versión inicial
-- Soporte completo para todos los endpoints del Bridge
-- Envíos masivos con control anti-ban
-- Cola asíncrona
-- Control de campañas
+### 1.0.1
+- Initial release
+- Full support for all Bridge endpoints
+- Bulk messaging with anti-ban control
+- Async queue
+- Campaign control
