@@ -52,6 +52,7 @@ npm whoami
 
 3. **Publish:**
 ```bash
+npm config set //registry.npmjs.org/:_authToken=TU_TOKEN_AQUI
 npm publish --access public
 ```
 

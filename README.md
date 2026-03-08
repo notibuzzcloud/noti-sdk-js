@@ -7,6 +7,11 @@
 
 **@notibuzz/noti-sdk-js** is a lightweight JavaScript and TypeScript SDK that provides seamless access to the Notibuzz Cloud REST API. It allows developers to send, manage, and automate WhatsApp messages, including high-volume bulk messaging, using a clean and modern API. Designed for scalability, reliability, and ease of use in Node.js and modern web applications.
 
+### 📚 Official documentation & DEMO
+
+- **Full API documentation:** [https://notibuzz.com/api-docs](https://notibuzz.com/api-docs) — Complete REST reference for all endpoints, parameters, and examples.
+- **Request a DEMO:** You can request a Notibuzz Cloud demonstration at [notibuzz.com](https://notibuzz.com) to try the platform before integrating.
+
 ## Features
 
 - ✅ **Full TypeScript** - Strong typing and autocompletion
@@ -760,10 +765,16 @@ MIT License - see [LICENSE](LICENSE) for more details.
 
 ## Support
 
+- **API Docs (official documentation)**: [https://notibuzz.com/api-docs](https://notibuzz.com/api-docs)
+- **Request a DEMO**: [notibuzz.com](https://notibuzz.com) — request a platform demonstration
 - **Issues**: [GitHub Issues](https://github.com/notibuzzcloud/noti-sdk-js/issues)
 - **Documentation**: [README](README.md)
 
 ## Changelog
+
+### 1.0.2
+- Added "Official documentation & DEMO" section with link to [notibuzz.com/api-docs](https://notibuzz.com/api-docs) and option to request a DEMO at [notibuzz.com](https://notibuzz.com)
+- Updated Support section with API docs and DEMO links
 
 ### 1.0.1
 - Initial release
