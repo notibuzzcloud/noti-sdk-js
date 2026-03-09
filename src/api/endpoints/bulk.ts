@@ -5,6 +5,62 @@ import type { RequestOptions } from '../client.js'
 const makePath = (tpl: string, params?: Record<string, string | number | boolean>) => tpl.replace(/\{(\w+)\}/g, (_, k) => encodeURIComponent(String(params?.[k])))
 
 /**
+ * Lista trabajos de envío masivo (waiting, delayed, active).
+ * Method: GET
+ * Path: /api/bulk/jobs
+ */
+export async function listBulkJobs<T = any>(args: {
+  pathParams?: Record<string, string | number | boolean>
+  query?: Record<string, any>
+  body?: any
+} = {}): Promise<T> {
+  const p = makePath('/api/bulk/jobs', args.pathParams) || '/api/bulk/jobs'
+  return getClient().get<T>(p, args.query)
+}
+
+/**
+ * Pausa un trabajo bulk por jobId.
+ * Method: POST
+ * Path: /api/bulk/jobs/{jobId}/pause
+ */
+export async function pauseBulkJob<T = any>(args: {
+  pathParams?: Record<string, string | number | boolean>
+  query?: Record<string, any>
+  body?: any
+} = {}): Promise<T> {
+  const p = makePath('/api/bulk/jobs/{jobId}/pause', args.pathParams) || '/api/bulk/jobs/{jobId}/pause'
+  return getClient().post<T>(p, args.body)
+}
+
+/**
+ * Reanuda un trabajo bulk pausado.
+ * Method: POST
+ * Path: /api/bulk/jobs/{jobId}/resume
+ */
+export async function resumeBulkJob<T = any>(args: {
+  pathParams?: Record<string, string | number | boolean>
+  query?: Record<string, any>
+  body?: any
+} = {}): Promise<T> {
+  const p = makePath('/api/bulk/jobs/{jobId}/resume', args.pathParams) || '/api/bulk/jobs/{jobId}/resume'
+  return getClient().post<T>(p, args.body)
+}
+
+/**
+ * Cancela un trabajo bulk.
+ * Method: POST
+ * Path: /api/bulk/jobs/{jobId}/cancel
+ */
+export async function cancelBulkJob<T = any>(args: {
+  pathParams?: Record<string, string | number | boolean>
+  query?: Record<string, any>
+  body?: any
+} = {}): Promise<T> {
+  const p = makePath('/api/bulk/jobs/{jobId}/cancel', args.pathParams) || '/api/bulk/jobs/{jobId}/cancel'
+  return getClient().post<T>(p, args.body)
+}
+
+/**
  * Detiene una campaña de envío masivo en curso.
  * Method: POST
  * Path: /api/bulk/campaigns/{id}/stop

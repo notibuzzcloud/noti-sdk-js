@@ -241,6 +241,38 @@ await bulkResumeCampaign({
 })
 ```
 
+### Bulk Jobs (list, pause, resume, cancel)
+
+When you send bulk messages via the API, each campaign is enqueued as a **job**. You can list jobs, pause a running job, resume it, or cancel it.
+
+```typescript
+import {
+  listBulkJobs,
+  pauseBulkJob,
+  resumeBulkJob,
+  cancelBulkJob
+} from '@notibuzz/noti-sdk-js'
+
+// List all bulk jobs (waiting, delayed, active)
+const { jobs, total } = await listBulkJobs()
+// jobs: [{ jobId, state, isPaused, messageCount, ... }]
+
+// Pause a job (e.g. to stop sending temporarily)
+await pauseBulkJob({
+  pathParams: { jobId: 'send-bulk-1234567890-ab12' }
+})
+
+// Resume a paused job
+await resumeBulkJob({
+  pathParams: { jobId: 'send-bulk-1234567890-ab12' }
+})
+
+// Cancel a job (removes from queue, releases locks)
+await cancelBulkJob({
+  pathParams: { jobId: 'send-bulk-1234567890-ab12' }
+})
+```
+
 ## Examples by Category
 
 ### Sessions
@@ -747,7 +779,7 @@ All endpoints are documented with TypeScript types. For the complete list of end
 - **Status**: `statusText`, `statusImage`, `statusVoice`, `statusVideo`, `statusDelete`
 - **Chats**: `chatsGet`, `chatsOverviewGet`, `chatsOverviewPost`, `chatsGetMessages`, `chatsReadMessages`, `chatsGetMessage`, `chatsDeleteMessage`, `chatsEditMessage`, `chatsPinMessage`, `chatsUnpinMessage`
 - **Contacts**: `contactsGetAll`, `contactsGetBasic`, `contactsCheckExists`, `contactsProfilePicture`, `contactsGetAbout`, `contactsBlock`, `contactsUnblock`, `contactsUpsert`
-- **Bulk**: `bulkStopCampaign`, `bulkResumeCampaign`, `bulkAvailability`
+- **Bulk**: `listBulkJobs`, `pauseBulkJob`, `resumeBulkJob`, `cancelBulkJob`, `bulkStopCampaign`, `bulkResumeCampaign`, `bulkAvailability`
 
 ## Contributing
 

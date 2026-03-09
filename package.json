@@ -1,6 +1,6 @@
 {
   "name": "@notibuzz/noti-sdk-js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Lightweight JavaScript SDK for sending WhatsApp messages and bulk messaging campaigns via the Notibuzz Cloud REST API.",
   "keywords": [
     "whatsapp",
