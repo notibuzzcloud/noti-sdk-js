@@ -27,6 +27,8 @@ coverage/
 
 # TypeScript
 *.tsbuildinfo
+# Compiled JS artifacts in src/ (source is .ts; tsup bundles to dist/)
+src/**/*.js
 
 # Misc
 *.log
@@ -35,3 +37,5 @@ yarn-debug.log*
 yarn-error.log*
 
 /*.tgz
+
+.npmrc
