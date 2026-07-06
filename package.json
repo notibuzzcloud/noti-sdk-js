@@ -1,6 +1,6 @@
 {
   "name": "@notibuzz/noti-sdk-js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Lightweight JavaScript SDK for sending WhatsApp messages and bulk messaging campaigns via the Notibuzz Cloud REST API.",
   "keywords": [
     "whatsapp",
@@ -24,9 +24,9 @@
   },
   "license": "MIT",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "sideEffects": false,
   "files": [
     "dist",
@@ -36,7 +36,8 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     }
   },
   "repository": {
@@ -48,16 +49,17 @@
   },
   "homepage": "https://github.com/notibuzzcloud/noti-sdk-js#readme",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsup",
     "clean": "rm -rf dist",
     "prepublishOnly": "npm run clean && npm run build",
     "generate": "tsx scripts/generate.ts",
     "release": "npm publish --access public"
   },
   "devDependencies": {
-    "typescript": "^5.6.3",
+    "@types/node": "^22.8.6",
+    "tsup": "^8.5.1",
     "tsx": "^4.0.0",
-    "@types/node": "^22.8.6"
+    "typescript": "^5.6.3"
   },
   "engines": {
     "node": ">=18.0.0"
